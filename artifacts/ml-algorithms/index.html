@@ -35,6 +35,98 @@
     </div>
   </header>
 
+  <!-- ── KEY CONCEPTS ─────────────────────────────────────── -->
+  <section class="section section-concepts">
+    <div class="container">
+      <h2 class="sec-title">Key Concepts</h2>
+      <p class="sec-desc">Definitions for the learning paradigms and application domains used throughout this framework.</p>
+
+      <div class="concepts-grid">
+
+        <div class="concept-group">
+          <div class="concept-group-title">Learning Paradigms</div>
+          <div class="concept-cards">
+
+            <div class="concept-card supervised-card">
+              <div class="concept-header">
+                <span class="pill supervised">Supervised</span>
+              </div>
+              <p>The algorithm learns from <strong>labeled training data</strong> — each input has a known correct output. The model learns the mapping from inputs to outputs and uses it to make predictions on new, unseen data.</p>
+              <div class="concept-example">
+                <span class="concept-eg-label">Example</span>
+                Training a model on thousands of emails labeled "spam" or "not spam" so it can classify future emails automatically.
+              </div>
+            </div>
+
+            <div class="concept-card unsupervised-card">
+              <div class="concept-header">
+                <span class="pill unsupervised">Unsupervised</span>
+              </div>
+              <p>The algorithm finds <strong>patterns and structure in unlabeled data</strong> on its own — no correct answers are provided during training. The model discovers hidden groupings, distributions, or representations.</p>
+              <div class="concept-example">
+                <span class="concept-eg-label">Example</span>
+                Grouping customers by purchasing behavior without being told in advance how many groups exist or what they represent.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="concept-group">
+          <div class="concept-group-title">Application Domains</div>
+          <div class="concept-cards domain-cards">
+
+            <div class="concept-card domain-card">
+              <div class="concept-header">
+                <span class="dtag tabular">Tabular</span>
+              </div>
+              <p>Structured data organized in <strong>rows and columns</strong> — like spreadsheets or database tables. Each row is a record (e.g. a transaction) and each column is a feature (e.g. price, quantity). Most classical ML algorithms are designed for this format.</p>
+              <div class="concept-example">
+                <span class="concept-eg-label">Example</span>
+                Sales records, customer demographics, financial data, sensor readings in a CSV or database table.
+              </div>
+            </div>
+
+            <div class="concept-card domain-card">
+              <div class="concept-header">
+                <span class="dtag cv">Computer Vision</span>
+              </div>
+              <p>Teaching machines to <strong>interpret and understand visual data</strong> — images, video, and video streams. Models learn spatial features like edges, textures, shapes, and objects from raw pixel values.</p>
+              <div class="concept-example">
+                <span class="concept-eg-label">Example</span>
+                Detecting tumours in X-ray images, recognising faces, identifying objects in a self-driving car's camera feed.
+              </div>
+            </div>
+
+            <div class="concept-card domain-card">
+              <div class="concept-header">
+                <span class="dtag nlp">NLP</span>
+              </div>
+              <p><strong>Natural Language Processing</strong> — enabling machines to read, understand, and generate human language. Models learn grammar, semantics, and context from large text corpora to perform tasks like translation, summarisation, and classification.</p>
+              <div class="concept-example">
+                <span class="concept-eg-label">Example</span>
+                Spam detection, sentiment analysis on reviews, chatbots, machine translation (English → Spanish).
+              </div>
+            </div>
+
+            <div class="concept-card domain-card">
+              <div class="concept-header">
+                <span class="dtag gen">Generative AI</span>
+              </div>
+              <p>Models that can <strong>create new content</strong> — images, text, audio, video, or code — that resembles the training data. Rather than just predicting a label, generative models learn the underlying data distribution and sample from it.</p>
+              <div class="concept-example">
+                <span class="concept-eg-label">Example</span>
+                Generating photorealistic faces (GANs), writing human-like text (LLMs), creating music, synthesising training data for rare medical conditions.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ── TAXONOMY MAP ──────────────────────────────────────── -->
   <section class="section">
     <div class="container">
@@ -459,6 +551,118 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FURTHER READING ──────────────────────────────────── -->
+  <section class="section section-reading">
+    <div class="container">
+      <h2 class="sec-title">Further Reading</h2>
+      <p class="sec-desc">Curated resources to go deeper on every concept covered in this framework.</p>
+
+      <div class="reading-grid">
+
+        <div class="reading-group">
+          <div class="reading-group-title">Foundations &amp; Courses</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://developers.google.com/machine-learning/crash-course" target="_blank" rel="noopener">Google ML Crash Course</a>
+              <span class="reading-desc">Free, beginner-friendly course covering supervised learning, gradient descent, and model evaluation — a great starting point.</span>
+            </li>
+            <li>
+              <a href="https://www.deeplearning.ai/courses/" target="_blank" rel="noopener">DeepLearning.AI Specializations</a>
+              <span class="reading-desc">Andrew Ng's structured courses on ML, deep learning, NLP, and MLOps — widely regarded as the best structured path into the field.</span>
+            </li>
+            <li>
+              <a href="https://www.fast.ai" target="_blank" rel="noopener">fast.ai — Practical Deep Learning</a>
+              <span class="reading-desc">Top-down, code-first approach to deep learning. Excellent for practitioners who learn by doing rather than by theory first.</span>
+            </li>
+            <li>
+              <a href="https://kaggle.com/learn" target="_blank" rel="noopener">Kaggle Learn</a>
+              <span class="reading-desc">Short, hands-on micro-courses covering Python, ML, deep learning, and more — all free with runnable notebooks.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Supervised &amp; Classical ML</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://scikit-learn.org/stable/supervised_learning.html" target="_blank" rel="noopener">Scikit-learn — Supervised Learning</a>
+              <span class="reading-desc">Official docs covering Linear Regression, Logistic Regression, SVMs, Decision Trees, and Random Forests with code examples.</span>
+            </li>
+            <li>
+              <a href="https://scikit-learn.org/stable/unsupervised_learning.html" target="_blank" rel="noopener">Scikit-learn — Unsupervised Learning</a>
+              <span class="reading-desc">Covers clustering algorithms including K-Means, with practical guidance on choosing k and evaluating clusters.</span>
+            </li>
+            <li>
+              <a href="https://d2l.ai" target="_blank" rel="noopener">Dive into Deep Learning (d2l.ai)</a>
+              <span class="reading-desc">Interactive, free textbook with math, code, and explanations for neural networks, CNNs, RNNs, and modern architectures.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Computer Vision</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://cs231n.stanford.edu" target="_blank" rel="noopener">Stanford CS231n — CNNs for Visual Recognition</a>
+              <span class="reading-desc">The definitive university course on computer vision and convolutional networks. Lecture notes and slides are freely available.</span>
+            </li>
+            <li>
+              <a href="https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html" target="_blank" rel="noopener">PyTorch — Training a CNN Classifier</a>
+              <span class="reading-desc">Hands-on tutorial building and training a CNN from scratch on the CIFAR-10 image dataset using PyTorch.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">NLP</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://huggingface.co/learn/nlp-course" target="_blank" rel="noopener">Hugging Face NLP Course</a>
+              <span class="reading-desc">Practical, code-first NLP course covering Transformers, tokenisation, fine-tuning, and the Hugging Face ecosystem.</span>
+            </li>
+            <li>
+              <a href="https://web.stanford.edu/class/cs224n/" target="_blank" rel="noopener">Stanford CS224N — NLP with Deep Learning</a>
+              <span class="reading-desc">Graduate-level NLP course covering RNNs, LSTMs, attention, and Transformers. Lecture videos and notes are public.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Generative AI &amp; GANs</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://developers.google.com/machine-learning/gan" target="_blank" rel="noopener">Google — GAN Fundamentals</a>
+              <span class="reading-desc">Structured introduction to GANs covering the generator/discriminator setup, training dynamics, and common failure modes like mode collapse.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/1406.2661" target="_blank" rel="noopener">Original GAN Paper — Goodfellow et al. (2014)</a>
+              <span class="reading-desc">The foundational paper that introduced Generative Adversarial Networks. Accessible even without a deep math background.</span>
+            </li>
+            <li>
+              <a href="https://www.deeplearning.ai/courses/generative-ai-for-everyone/" target="_blank" rel="noopener">DeepLearning.AI — Generative AI for Everyone</a>
+              <span class="reading-desc">Non-technical overview of how generative AI works, its capabilities, limitations, and practical applications in the real world.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Books</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/" target="_blank" rel="noopener">Hands-On ML with Scikit-Learn, Keras &amp; TensorFlow</a>
+              <span class="reading-desc">Aurélien Géron's comprehensive book — the go-to practical reference for classical ML through deep learning. Highly recommended.</span>
+            </li>
+            <li>
+              <a href="https://www.deeplearningbook.org" target="_blank" rel="noopener">Deep Learning — Goodfellow, Bengio &amp; Courville</a>
+              <span class="reading-desc">The standard academic textbook for deep learning theory. Free to read online. Best for those wanting rigorous mathematical foundations.</span>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
