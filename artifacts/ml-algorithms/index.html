@@ -734,13 +734,15 @@
     <div class="container">
       <h2 class="sec-title">Reflection</h2>
       <div class="reflection-card">
-        <p>Building this visual framework deepened my understanding of how machine learning algorithms differ not just in their mathematics, but in their <strong>inductive biases</strong> — the assumptions each method bakes in about the world.</p>
+        <p>I came into this exercise thinking I already had a decent handle on ML — I work with data pipelines daily and have read plenty of articles. But actually sitting down and mapping out algorithms side by side, with their types and domains, showed me how much I was mentally lumping things together without really distinguishing them.</p>
 
-        <p>What struck me most was the progression from interpretable models like Linear Regression and Decision Trees, where every decision can be traced, to black-box deep learning models like CNNs and GANs that trade interpretability for raw expressive power. Mapping each algorithm to application domains made this tradeoff tangible: for structured tabular data with limited samples, a well-tuned Random Forest often outperforms a neural network; for raw pixels or sequences, deep architectures are unmatched.</p>
+        <p>The supervised vs. unsupervised split sounds obvious until you try to place every algorithm on one side of that line. GANs gave me the most trouble — the generator is trying to fool the discriminator, but there are no labels in the traditional sense. It sits in a weird space that made me re-examine what "supervised" actually means.</p>
 
-        <p>The emergence of <strong>Generative AI</strong> as a fourth domain was a key learning. GANs, LSTMs, and Neural Networks all contribute to generative pipelines, and understanding their individual mechanics makes the current wave of large generative models — diffusion models, transformers, LLMs — easier to reason about as combinations and refinements of these foundational ideas.</p>
+        <p>What clicked for me most was connecting the domains to real data I've worked with. Tabular data is my day job — structured rows, business metrics, sales records. I've seen firsthand how a well-tuned gradient boosted model can outperform something far more complex on that kind of data. Computer vision and NLP felt more distant until I thought about use cases I actually care about: document parsing, demand forecasting from external signals, anomaly detection in pipelines.</p>
 
-        <p>This artifact will serve as a living reference I return to throughout my studies, particularly when deciding which algorithm to reach for in a new problem context.</p>
+        <p>The generative AI section was humbling. I use these tools every day but hadn't thought carefully about the mechanics underneath. Looking at GANs and LSTMs as building blocks rather than magic made the current generation of models feel less like a black box.</p>
+
+        <p>I'll keep coming back to this as a reference — less for memorizing details and more for the mental map of what tool fits what problem.</p>
       </div>
     </div>
   </section>
