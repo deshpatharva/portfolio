@@ -15,13 +15,16 @@
   <nav class="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-logo">Atharva Deshpande</a>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#pipeline">Pipeline</a></li>
-        <li><a href="#artifacts">Artifacts</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about"      onclick="closeNav()">About</a></li>
+        <li><a href="#experience" onclick="closeNav()">Experience</a></li>
+        <li><a href="#pipeline"   onclick="closeNav()">Pipeline</a></li>
+        <li><a href="#artifacts"  onclick="closeNav()">Artifacts</a></li>
+        <li><a href="#contact"    onclick="closeNav()">Contact</a></li>
       </ul>
+      <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -239,6 +242,19 @@
       <p class="form-success hidden" id="formSuccess">Contact form submitted.</p>
     </div>
   </section>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      navToggle.classList.toggle('active');
+    });
+    function closeNav() {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('active');
+    }
+  </script>
 
   <script>
     document.getElementById('contactForm').addEventListener('submit', async function (e) {
