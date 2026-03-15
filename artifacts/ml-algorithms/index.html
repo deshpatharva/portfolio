@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ML Algorithms Visual Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────────── -->
+  <nav class="topbar">
+    <a href="../../index.html" class="back-link">&#8592; Portfolio</a>
+    <span class="topbar-title">ML Algorithms Framework</span>
+    <span class="topbar-badge">Artifact 1</span>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <header class="artifact-hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Machine Learning &bull; Visual Framework</p>
+      <h1>10 ML Algorithms<br /><span class="grad">Classified &amp; Visualized</span></h1>
+      <p class="hero-desc">A comprehensive reference covering algorithm type, application domains, real-world use cases, and working principles — organized for quick recall and deeper study.</p>
+      <div class="legend">
+        <span class="pill supervised">Supervised</span>
+        <span class="pill unsupervised">Unsupervised</span>
+        <span class="domain-dot tabular"></span><span class="domain-label">Tabular</span>
+        <span class="domain-dot cv"></span><span class="domain-label">Computer Vision</span>
+        <span class="domain-dot nlp"></span><span class="domain-label">NLP</span>
+        <span class="domain-dot gen"></span><span class="domain-label">Generative AI</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── TAXONOMY MAP ──────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <h2 class="sec-title">Algorithm Taxonomy</h2>
+      <p class="sec-desc">How the 10 algorithms relate to one another — grouped by learning paradigm and primary function.</p>
+
+      <div class="taxonomy-map">
+        <!-- SUPERVISED branch -->
+        <div class="taxo-branch">
+          <div class="taxo-root supervised-root">Supervised Learning</div>
+          <div class="taxo-children">
+            <div class="taxo-group">
+              <div class="taxo-group-label">Regression / Classification</div>
+              <div class="taxo-nodes">
+                <a href="#lr"  class="taxo-node">Linear Regression</a>
+                <a href="#lr"  class="taxo-node">Logistic Regression</a>
+                <a href="#dt"  class="taxo-node">Decision Trees</a>
+                <a href="#rf"  class="taxo-node">Random Forest</a>
+                <a href="#svm" class="taxo-node">SVM</a>
+              </div>
+            </div>
+            <div class="taxo-group">
+              <div class="taxo-group-label">Deep / Sequential</div>
+              <div class="taxo-nodes">
+                <a href="#nn"  class="taxo-node">Neural Networks</a>
+                <a href="#cnn" class="taxo-node">CNN</a>
+                <a href="#rnn" class="taxo-node">RNN / LSTM</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- UNSUPERVISED branch -->
+        <div class="taxo-branch">
+          <div class="taxo-root unsupervised-root">Unsupervised Learning</div>
+          <div class="taxo-children">
+            <div class="taxo-group">
+              <div class="taxo-group-label">Clustering / Generation</div>
+              <div class="taxo-nodes">
+                <a href="#km"  class="taxo-node">K-Means</a>
+                <a href="#gan" class="taxo-node">GANs</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ALGORITHM CARDS ───────────────────────────────────── -->
+  <section class="section section-cards">
+    <div class="container">
+      <h2 class="sec-title">Algorithm Deep-Dives</h2>
+      <p class="sec-desc">Each card covers type, domains, use cases, and a plain-language explanation.</p>
+
+      <div class="cards-grid">
+
+        <!-- ① Linear Regression -->
+        <article id="lr" class="algo-card">
+          <div class="card-header" style="--accent:#43e97b">
+            <span class="algo-num">01</span>
+            <div>
+              <h3>Linear Regression</h3>
+              <span class="pill supervised">Supervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag tabular">Tabular</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>Fits a straight line (or hyperplane) through data by minimising the sum of squared differences between predicted and actual values. The result is a set of weights (coefficients) that map inputs to a continuous output.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>House price prediction from size, location, age</li>
+              <li>Sales forecasting from ad spend</li>
+              <li>Medical outcome estimation (e.g., blood-pressure change)</li>
+            </ul>
+          </div>
+          <div class="formula">ŷ = β₀ + β₁x₁ + … + βₙxₙ</div>
+        </article>
+
+        <!-- ② Logistic Regression -->
+        <article id="logr" class="algo-card">
+          <div class="card-header" style="--accent:#00d4ff">
+            <span class="algo-num">02</span>
+            <div>
+              <h3>Logistic Regression</h3>
+              <span class="pill supervised">Supervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag tabular">Tabular</span>
+            <span class="dtag nlp">NLP</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>Applies a sigmoid function to a linear combination of inputs, squashing output to [0, 1] so it can be interpreted as a class probability. A threshold (typically 0.5) converts probability to a binary label.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>Email spam detection</li>
+              <li>Credit default prediction</li>
+              <li>Disease diagnosis (malignant vs. benign)</li>
+            </ul>
+          </div>
+          <div class="formula">P(y=1) = 1 / (1 + e<sup>−z</sup>)</div>
+        </article>
+
+        <!-- ③ Decision Trees -->
+        <article id="dt" class="algo-card">
+          <div class="card-header" style="--accent:#f7971e">
+            <span class="algo-num">03</span>
+            <div>
+              <h3>Decision Trees</h3>
+              <span class="pill supervised">Supervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag tabular">Tabular</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>Recursively splits data on the feature that maximises information gain (or reduces Gini impurity). Produces a human-readable tree of if-then rules. Prone to overfitting without pruning.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>Customer churn prediction</li>
+              <li>Loan eligibility decisions</li>
+              <li>Medical triage / symptom checking</li>
+            </ul>
+          </div>
+          <div class="formula">Gini = 1 − Σ pᵢ²</div>
+        </article>
+
+        <!-- ④ Random Forest -->
+        <article id="rf" class="algo-card">
+          <div class="card-header" style="--accent:#56ab2f">
+            <span class="algo-num">04</span>
+            <div>
+              <h3>Random Forest</h3>
+              <span class="pill supervised">Supervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag tabular">Tabular</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>An ensemble of decision trees trained on random subsets of data (bagging) and random subsets of features. Predictions are aggregated by majority vote (classification) or averaging (regression), which dramatically reduces variance.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>Fraud detection in financial transactions</li>
+              <li>Stock market trend prediction</li>
+              <li>Remote sensing / land classification</li>
+            </ul>
+          </div>
+          <div class="formula">ŷ = mode{ T₁(x), T₂(x), …, Tₙ(x) }</div>
+        </article>
+
+        <!-- ⑤ Support Vector Machine -->
+        <article id="svm" class="algo-card">
+          <div class="card-header" style="--accent:#ff6b9d">
+            <span class="algo-num">05</span>
+            <div>
+              <h3>Support Vector Machine</h3>
+              <span class="pill supervised">Supervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag tabular">Tabular</span>
+            <span class="dtag cv">Computer Vision</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>Finds the maximum-margin hyperplane that separates classes. Support vectors are the closest data points that define the margin. The kernel trick (RBF, polynomial) allows non-linear separation in higher-dimensional spaces.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>Handwritten digit recognition (pre-deep-learning era)</li>
+              <li>Bioinformatics — protein classification</li>
+              <li>Face detection pipelines</li>
+            </ul>
+          </div>
+          <div class="formula">max <sub>w,b</sub> 2/‖w‖ &nbsp; s.t. yᵢ(w·xᵢ+b) ≥ 1</div>
+        </article>
+
+        <!-- ⑥ Neural Networks -->
+        <article id="nn" class="algo-card">
+          <div class="card-header" style="--accent:#6c63ff">
+            <span class="algo-num">06</span>
+            <div>
+              <h3>Neural Networks (MLP)</h3>
+              <span class="pill supervised">Supervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag tabular">Tabular</span>
+            <span class="dtag nlp">NLP</span>
+            <span class="dtag gen">Generative AI</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>Stacked layers of neurons with learnable weights. Each neuron computes a weighted sum of its inputs, applies an activation function (ReLU, sigmoid), and passes results forward. Back-propagation adjusts weights by gradient descent to minimise loss.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>Tabular regression &amp; classification (banking, retail)</li>
+              <li>Foundation of virtually all modern deep-learning systems</li>
+              <li>Recommendation engines</li>
+            </ul>
+          </div>
+          <div class="formula">a<sup>(l)</sup> = σ(W<sup>(l)</sup>a<sup>(l-1)</sup> + b<sup>(l)</sup>)</div>
+        </article>
+
+        <!-- ⑦ CNN -->
+        <article id="cnn" class="algo-card">
+          <div class="card-header" style="--accent:#f953c6">
+            <span class="algo-num">07</span>
+            <div>
+              <h3>Convolutional Neural Network</h3>
+              <span class="pill supervised">Supervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag cv">Computer Vision</span>
+            <span class="dtag gen">Generative AI</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>Uses learnable filters (kernels) that slide over an image to extract spatial features — edges, textures, shapes — in early layers and complex objects in deeper layers. Pooling layers reduce spatial resolution and add translation invariance.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>Medical imaging — tumour detection in X-rays/MRIs</li>
+              <li>Self-driving car perception</li>
+              <li>Image style transfer &amp; generative art (backbone of GANs)</li>
+            </ul>
+          </div>
+          <div class="formula">(f * g)(t) = Σ f(τ) g(t−τ)</div>
+        </article>
+
+        <!-- ⑧ RNN / LSTM -->
+        <article id="rnn" class="algo-card">
+          <div class="card-header" style="--accent:#11998e">
+            <span class="algo-num">08</span>
+            <div>
+              <h3>RNN / LSTM</h3>
+              <span class="pill supervised">Supervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag nlp">NLP</span>
+            <span class="dtag gen">Generative AI</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>Processes sequences by maintaining a hidden state passed from step to step. LSTMs add gating mechanisms (forget, input, output gates) that control information flow, solving the vanishing-gradient problem that plagued basic RNNs.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>Machine translation (pre-Transformer era)</li>
+              <li>Time-series forecasting — energy demand, stock prices</li>
+              <li>Speech recognition &amp; synthesis</li>
+            </ul>
+          </div>
+          <div class="formula">hₜ = tanh(Wₕhₜ₋₁ + Wₓxₜ + b)</div>
+        </article>
+
+        <!-- ⑨ K-Means Clustering -->
+        <article id="km" class="algo-card">
+          <div class="card-header" style="--accent:#fc4a1a">
+            <span class="algo-num">09</span>
+            <div>
+              <h3>K-Means Clustering</h3>
+              <span class="pill unsupervised">Unsupervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag tabular">Tabular</span>
+            <span class="dtag cv">Computer Vision</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>Partitions n data points into k clusters by iteratively assigning each point to the nearest centroid, then recomputing centroids as the mean of assigned points. Converges when assignments no longer change.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>Customer segmentation for targeted marketing</li>
+              <li>Document / topic clustering</li>
+              <li>Image colour quantisation &amp; compression</li>
+            </ul>
+          </div>
+          <div class="formula">min Σ Σ ‖xᵢ − μₖ‖²</div>
+        </article>
+
+        <!-- ⑩ GANs -->
+        <article id="gan" class="algo-card">
+          <div class="card-header" style="--accent:#c471ed">
+            <span class="algo-num">10</span>
+            <div>
+              <h3>Generative Adversarial Network</h3>
+              <span class="pill unsupervised">Unsupervised</span>
+            </div>
+          </div>
+          <div class="domain-row">
+            <span class="dtag cv">Computer Vision</span>
+            <span class="dtag gen">Generative AI</span>
+            <span class="dtag nlp">NLP</span>
+          </div>
+          <div class="card-section">
+            <div class="label">How It Works</div>
+            <p>Two neural networks compete in a minimax game: a Generator creates fake data, a Discriminator tries to distinguish real from fake. The generator improves until it produces data indistinguishable from real samples.</p>
+          </div>
+          <div class="card-section">
+            <div class="label">Real-World Use Cases</div>
+            <ul>
+              <li>Photorealistic image synthesis (faces, scenes)</li>
+              <li>Data augmentation for rare medical conditions</li>
+              <li>Deepfake generation &amp; detection research</li>
+              <li>Drug molecule design in bioinformatics</li>
+            </ul>
+          </div>
+          <div class="formula">min<sub>G</sub> max<sub>D</sub> 𝔼[log D(x)] + 𝔼[log(1−D(G(z)))]</div>
+        </article>
+
+      </div><!-- /cards-grid -->
+    </div>
+  </section>
+
+  <!-- ── COMPARISON TABLE ──────────────────────────────────── -->
+  <section class="section section-table">
+    <div class="container">
+      <h2 class="sec-title">At-a-Glance Comparison</h2>
+      <p class="sec-desc">Quick reference across all 10 algorithms.</p>
+
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Algorithm</th>
+              <th>Type</th>
+              <th>Tabular</th>
+              <th>CV</th>
+              <th>NLP</th>
+              <th>Gen AI</th>
+              <th>Complexity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td><td>Linear Regression</td>
+              <td><span class="pill supervised sm">Supervised</span></td>
+              <td class="chk">&#10003;</td><td></td><td></td><td></td>
+              <td><span class="bar" style="--w:15%"></span> Low</td>
+            </tr>
+            <tr>
+              <td>02</td><td>Logistic Regression</td>
+              <td><span class="pill supervised sm">Supervised</span></td>
+              <td class="chk">&#10003;</td><td></td><td class="chk">&#10003;</td><td></td>
+              <td><span class="bar" style="--w:20%"></span> Low</td>
+            </tr>
+            <tr>
+              <td>03</td><td>Decision Trees</td>
+              <td><span class="pill supervised sm">Supervised</span></td>
+              <td class="chk">&#10003;</td><td></td><td></td><td></td>
+              <td><span class="bar" style="--w:25%"></span> Low-Med</td>
+            </tr>
+            <tr>
+              <td>04</td><td>Random Forest</td>
+              <td><span class="pill supervised sm">Supervised</span></td>
+              <td class="chk">&#10003;</td><td></td><td></td><td></td>
+              <td><span class="bar" style="--w:40%"></span> Medium</td>
+            </tr>
+            <tr>
+              <td>05</td><td>SVM</td>
+              <td><span class="pill supervised sm">Supervised</span></td>
+              <td class="chk">&#10003;</td><td class="chk">&#10003;</td><td></td><td></td>
+              <td><span class="bar" style="--w:45%"></span> Medium</td>
+            </tr>
+            <tr>
+              <td>06</td><td>Neural Network (MLP)</td>
+              <td><span class="pill supervised sm">Supervised</span></td>
+              <td class="chk">&#10003;</td><td></td><td class="chk">&#10003;</td><td class="chk">&#10003;</td>
+              <td><span class="bar" style="--w:65%"></span> High</td>
+            </tr>
+            <tr>
+              <td>07</td><td>CNN</td>
+              <td><span class="pill supervised sm">Supervised</span></td>
+              <td></td><td class="chk">&#10003;</td><td></td><td class="chk">&#10003;</td>
+              <td><span class="bar" style="--w:75%"></span> High</td>
+            </tr>
+            <tr>
+              <td>08</td><td>RNN / LSTM</td>
+              <td><span class="pill supervised sm">Supervised</span></td>
+              <td></td><td></td><td class="chk">&#10003;</td><td class="chk">&#10003;</td>
+              <td><span class="bar" style="--w:70%"></span> High</td>
+            </tr>
+            <tr>
+              <td>09</td><td>K-Means</td>
+              <td><span class="pill unsupervised sm">Unsupervised</span></td>
+              <td class="chk">&#10003;</td><td class="chk">&#10003;</td><td></td><td></td>
+              <td><span class="bar" style="--w:30%"></span> Med-Low</td>
+            </tr>
+            <tr>
+              <td>10</td><td>GAN</td>
+              <td><span class="pill unsupervised sm">Unsupervised</span></td>
+              <td></td><td class="chk">&#10003;</td><td class="chk">&#10003;</td><td class="chk">&#10003;</td>
+              <td><span class="bar" style="--w:90%"></span> Very High</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REFLECTION ────────────────────────────────────────── -->
+  <section class="section section-reflection">
+    <div class="container">
+      <h2 class="sec-title">Reflection</h2>
+      <div class="reflection-card">
+        <p>Building this visual framework deepened my understanding of how machine learning algorithms differ not just in their mathematics, but in their <strong>inductive biases</strong> — the assumptions each method bakes in about the world.</p>
+
+        <p>What struck me most was the progression from interpretable models like Linear Regression and Decision Trees, where every decision can be traced, to black-box deep learning models like CNNs and GANs that trade interpretability for raw expressive power. Mapping each algorithm to application domains made this tradeoff tangible: for structured tabular data with limited samples, a well-tuned Random Forest often outperforms a neural network; for raw pixels or sequences, deep architectures are unmatched.</p>
+
+        <p>The emergence of <strong>Generative AI</strong> as a fourth domain was a key learning. GANs, LSTMs, and Neural Networks all contribute to generative pipelines, and understanding their individual mechanics makes the current wave of large generative models — diffusion models, transformers, LLMs — easier to reason about as combinations and refinements of these foundational ideas.</p>
+
+        <p>This artifact will serve as a living reference I return to throughout my studies, particularly when deciding which algorithm to reach for in a new problem context.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────── -->
+  <footer class="art-footer">
+    <div class="container">
+      <a href="../../index.html">&larr; Back to Portfolio</a>
+      <span>ML Algorithms Visual Framework &bull; 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>
