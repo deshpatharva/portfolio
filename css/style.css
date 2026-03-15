@@ -353,11 +353,55 @@ a:hover { text-decoration: underline; }
 .stat-unit { font-size: .78rem; font-weight: 600; color: var(--accent2); text-transform: uppercase; letter-spacing: .07em; margin: 4px 0; }
 .stat-label { font-size: .78rem; color: var(--text-muted); }
 
+/* ── Contact form ── */
+.contact-form {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group { display: flex; flex-direction: column; gap: 7px; }
+.form-group label { font-size: .8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .06em; }
+.form-group input,
+.form-group textarea {
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: .93rem;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  resize: vertical;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--text-muted); }
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent1);
+  box-shadow: 0 0 0 3px rgba(108,99,255,.15);
+}
+.form-footer { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.form-submit { border: none; cursor: pointer; }
+.form-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+.form-status { font-size: .88rem; }
+.form-status.success { color: var(--accent4); }
+.form-status.error   { color: #ff6b6b; }
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .medallion-grid { grid-template-columns: 1fr; }
   .pipeline-stats { grid-template-columns: repeat(2, 1fr); }
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 900px) {
+  .form-row { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .hero { flex-direction: column; text-align: center; padding: 60px 24px; }
