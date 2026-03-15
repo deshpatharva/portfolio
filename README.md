@@ -2,10 +2,6 @@
 
 A professional portfolio documenting my learning journey in machine learning and AI.
 
-## Live Site
-
-Deploy via GitHub Pages: `Settings → Pages → Deploy from main branch / root`
-
 ## Structure
 
 ```
