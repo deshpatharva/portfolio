@@ -350,6 +350,7 @@ a:hover { text-decoration: underline; }
   margin-bottom: 16px;
 }
 
+/* ── Domain concept cards (unchanged) ── */
 .concept-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -363,9 +364,7 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius);
   padding: 22px;
 }
-.supervised-card   { border-top: 3px solid var(--supervised); }
-.unsupervised-card { border-top: 3px solid var(--unsupervised); }
-.domain-card       { border-top: 3px solid var(--border); }
+.domain-card { border-top: 3px solid var(--border); }
 
 .concept-header { margin-bottom: 12px; }
 .concept-card p { font-size: .87rem; color: var(--text-muted); margin-bottom: 14px; }
@@ -388,6 +387,151 @@ a:hover { text-decoration: underline; }
   color: var(--text-muted);
   margin-bottom: 4px;
 }
+
+/* ── Learning Paradigm Cards ── */
+.paradigm-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.paradigm-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 36px 32px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: transform .3s, box-shadow .3s;
+}
+.paradigm-card:hover { transform: translateY(-4px); }
+
+.paradigm-supervised {
+  background: linear-gradient(145deg, rgba(67,233,123,.07) 0%, rgba(13,15,26,1) 60%);
+  border-color: rgba(67,233,123,.25);
+  box-shadow: 0 0 40px rgba(67,233,123,.06);
+}
+.paradigm-supervised:hover { box-shadow: 0 8px 48px rgba(67,233,123,.15); }
+
+.paradigm-unsupervised {
+  background: linear-gradient(145deg, rgba(249,83,198,.08) 0%, rgba(13,15,26,1) 60%);
+  border-color: rgba(249,83,198,.25);
+  box-shadow: 0 0 40px rgba(249,83,198,.06);
+}
+.paradigm-unsupervised:hover { box-shadow: 0 8px 48px rgba(249,83,198,.15); }
+
+/* Ambient glow blob */
+.paradigm-glow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  filter: blur(60px);
+  pointer-events: none;
+}
+.paradigm-supervised   .paradigm-glow { background: rgba(67,233,123,.18); }
+.paradigm-unsupervised .paradigm-glow { background: rgba(249,83,198,.18); }
+
+.paradigm-icon {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  display: block;
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+.paradigm-top { margin-bottom: 12px; }
+
+.paradigm-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.paradigm-body {
+  font-size: .9rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+.paradigm-body strong { color: var(--text); }
+
+/* Mini flow steps */
+.paradigm-flow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.pf-step {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.pf-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.paradigm-supervised   .pf-dot { background: var(--supervised); box-shadow: 0 0 6px var(--supervised); }
+.paradigm-unsupervised .pf-dot { background: var(--unsupervised); box-shadow: 0 0 6px var(--unsupervised); }
+.pf-line {
+  flex: 1;
+  min-width: 16px;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Example box */
+.paradigm-example {
+  background: rgba(255,255,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 24px;
+}
+.paradigm-eg-label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+.paradigm-supervised   .paradigm-eg-label { color: var(--supervised); }
+.paradigm-unsupervised .paradigm-eg-label { color: var(--unsupervised); }
+.paradigm-example p { font-size: .82rem; color: var(--text-muted); margin: 0; }
+
+/* Algorithm tags */
+.paradigm-algos-label {
+  display: block;
+  font-size: .7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.paradigm-algo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.paradigm-algo-tags span {
+  font-size: .72rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1px solid;
+}
+.paradigm-supervised   .paradigm-algo-tags span { background: rgba(67,233,123,.08);  border-color: rgba(67,233,123,.25);  color: var(--supervised); }
+.paradigm-unsupervised .paradigm-algo-tags span { background: rgba(249,83,198,.08); border-color: rgba(249,83,198,.25); color: var(--unsupervised); }
 
 /* ── Further Reading ── */
 .reading-grid {
@@ -426,8 +570,9 @@ a:hover { text-decoration: underline; }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .domain-cards  { grid-template-columns: repeat(2, 1fr); }
-  .reading-grid  { grid-template-columns: repeat(2, 1fr); }
+  .domain-cards    { grid-template-columns: repeat(2, 1fr); }
+  .reading-grid    { grid-template-columns: repeat(2, 1fr); }
+  .paradigm-cards  { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
   .cards-grid { grid-template-columns: 1fr; }

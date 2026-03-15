@@ -45,27 +45,89 @@
 
         <div class="concept-group">
           <div class="concept-group-title">Learning Paradigms</div>
-          <div class="concept-cards">
+          <div class="paradigm-cards">
 
-            <div class="concept-card supervised-card">
-              <div class="concept-header">
-                <span class="pill supervised">Supervised</span>
-              </div>
-              <p>The algorithm learns from <strong>labeled training data</strong> — each input has a known correct output. The model learns the mapping from inputs to outputs and uses it to make predictions on new, unseen data.</p>
-              <div class="concept-example">
-                <span class="concept-eg-label">Example</span>
-                Training a model on thousands of emails labeled "spam" or "not spam" so it can classify future emails automatically.
+            <div class="paradigm-card paradigm-supervised">
+              <div class="paradigm-glow"></div>
+              <div class="paradigm-icon">&#127959;</div>
+              <div class="paradigm-content">
+                <div class="paradigm-top">
+                  <span class="pill supervised">Supervised Learning</span>
+                </div>
+                <h3 class="paradigm-heading">Learning with a Teacher</h3>
+                <p class="paradigm-body">The algorithm trains on <strong>labeled data</strong> — every input has a known correct answer. It learns the mapping from inputs to outputs, then applies that knowledge to predict labels on new, unseen examples.</p>
+                <div class="paradigm-flow">
+                  <div class="pf-step">
+                    <div class="pf-dot"></div>
+                    <span>Labeled training data</span>
+                  </div>
+                  <div class="pf-line"></div>
+                  <div class="pf-step">
+                    <div class="pf-dot"></div>
+                    <span>Model learns mapping</span>
+                  </div>
+                  <div class="pf-line"></div>
+                  <div class="pf-step">
+                    <div class="pf-dot"></div>
+                    <span>Predict on new data</span>
+                  </div>
+                </div>
+                <div class="paradigm-example">
+                  <span class="paradigm-eg-label">&#9654; Real-world example</span>
+                  <p>Training on thousands of emails labeled "spam" or "not spam" so the model can classify future emails automatically.</p>
+                </div>
+                <div class="paradigm-algos">
+                  <span class="paradigm-algos-label">Algorithms in this framework</span>
+                  <div class="paradigm-algo-tags">
+                    <span>Linear Regression</span>
+                    <span>Logistic Regression</span>
+                    <span>Decision Trees</span>
+                    <span>Random Forest</span>
+                    <span>SVM</span>
+                    <span>Neural Networks</span>
+                    <span>CNN</span>
+                    <span>RNN / LSTM</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="concept-card unsupervised-card">
-              <div class="concept-header">
-                <span class="pill unsupervised">Unsupervised</span>
-              </div>
-              <p>The algorithm finds <strong>patterns and structure in unlabeled data</strong> on its own — no correct answers are provided during training. The model discovers hidden groupings, distributions, or representations.</p>
-              <div class="concept-example">
-                <span class="concept-eg-label">Example</span>
-                Grouping customers by purchasing behavior without being told in advance how many groups exist or what they represent.
+            <div class="paradigm-card paradigm-unsupervised">
+              <div class="paradigm-glow"></div>
+              <div class="paradigm-icon">&#128300;</div>
+              <div class="paradigm-content">
+                <div class="paradigm-top">
+                  <span class="pill unsupervised">Unsupervised Learning</span>
+                </div>
+                <h3 class="paradigm-heading">Learning without a Teacher</h3>
+                <p class="paradigm-body">The algorithm finds <strong>hidden patterns in unlabeled data</strong> — no correct answers are provided. The model discovers structure, groupings, or representations entirely on its own.</p>
+                <div class="paradigm-flow">
+                  <div class="pf-step">
+                    <div class="pf-dot"></div>
+                    <span>Raw unlabeled data</span>
+                  </div>
+                  <div class="pf-line"></div>
+                  <div class="pf-step">
+                    <div class="pf-dot"></div>
+                    <span>Discover structure</span>
+                  </div>
+                  <div class="pf-line"></div>
+                  <div class="pf-step">
+                    <div class="pf-dot"></div>
+                    <span>Clusters / representations</span>
+                  </div>
+                </div>
+                <div class="paradigm-example">
+                  <span class="paradigm-eg-label">&#9654; Real-world example</span>
+                  <p>Grouping customers by purchasing behaviour without being told how many groups exist or what they represent.</p>
+                </div>
+                <div class="paradigm-algos">
+                  <span class="paradigm-algos-label">Algorithms in this framework</span>
+                  <div class="paradigm-algo-tags">
+                    <span>K-Means</span>
+                    <span>GAN</span>
+                  </div>
+                </div>
               </div>
             </div>
 
