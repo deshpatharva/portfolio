@@ -213,7 +213,51 @@
   <section id="contact" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Contact</h2>
-      <p class="section-desc">Open to collaboration, questions, or feedback on any portfolio artifact.</p>
+      <p class="section-desc">Open to collaboration, questions, or feedback on any portfolio artifact. Fill out the form and your message will be sent directly to my inbox.</p>
+
+      <div class="contact-layout">
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">&#9993;</div>
+            <div>
+              <div class="contact-label">University Email</div>
+              <a href="mailto:atharva.deshpande@myemail.indwes.edu" class="contact-value">atharva.deshpande@myemail.indwes.edu</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">&#63743;</div>
+            <div>
+              <div class="contact-label">Personal Email</div>
+              <a href="mailto:deshpatharva@icloud.com" class="contact-value">deshpatharva@icloud.com</a>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="cf-email">Email</label>
+              <input type="email" id="cf-email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" placeholder="What's this about?" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" placeholder="Your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">Send Message</button>
+          <p class="form-note">Clicking Send opens your default email client with the message pre-filled.</p>
+        </form>
+
+      </div>
     </div>
   </section>
 
@@ -223,6 +267,28 @@
       <p>&copy; 2026 Atharva Deshpande. Data Engineer &bull; University at Buffalo Alumni.</p>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name    = document.getElementById('cf-name').value.trim();
+      const email   = document.getElementById('cf-email').value.trim();
+      const subject = document.getElementById('cf-subject').value.trim();
+      const message = document.getElementById('cf-message').value.trim();
+
+      if (!name || !email || !subject || !message) return;
+
+      const to = 'atharva.deshpande@myemail.indwes.edu,deshpatharva@icloud.com';
+      const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+
+      const mailto = `mailto:${to}`
+        + `?subject=${encodeURIComponent(subject)}`
+        + `&body=${encodeURIComponent(body)}`;
+
+      window.location.href = mailto;
+    });
+  </script>
 
 </body>
 </html>
