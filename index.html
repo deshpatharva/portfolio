@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio | ML & Data Science</title>
+  <title>Atharva Deshpande | Data Engineer Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -14,9 +14,11 @@
   <!-- ── NAV ─────────────────────────────────────────────── -->
   <nav class="navbar">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">Portfolio</a>
+      <a href="#" class="nav-logo">Atharva Deshpande</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#pipeline">Pipeline</a></li>
         <li><a href="#artifacts">Artifacts</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -26,24 +28,166 @@
   <!-- ── HERO ──────────────────────────────────────────────── -->
   <header class="hero">
     <div class="hero-content">
-      <span class="hero-tag">Professional Portfolio</span>
-      <h1>Machine Learning <br /><span class="gradient-text">Algorithms</span> Reference</h1>
-      <p class="hero-sub">A curated visual framework covering 10 foundational ML algorithms — classified by type, domain, and real-world use cases.</p>
-      <a href="#artifacts" class="btn btn-primary">Explore Artifacts</a>
+      <span class="hero-tag">Advanced Data Engineer &bull; Kroger</span>
+      <h1>Atharva<br /><span class="gradient-text">Deshpande</span></h1>
+      <p class="hero-sub">Building high-throughput data pipelines that process <strong>10 million+ sales records</strong> at 250 TPS — on Azure, Databricks, and PySpark.</p>
+      <div class="hero-ctas">
+        <a href="#about" class="btn btn-primary">About Me</a>
+        <a href="#artifacts" class="btn btn-ghost">View Artifacts</a>
+      </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
       <div class="orbit-ring ring-1"></div>
       <div class="orbit-ring ring-2"></div>
       <div class="orbit-ring ring-3"></div>
-      <div class="orbit-center">ML</div>
+      <div class="orbit-center">AD</div>
     </div>
   </header>
 
   <!-- ── ABOUT ─────────────────────────────────────────────── -->
-  <section id="about" class="section section-about">
+  <section id="about" class="section section-alt">
     <div class="container">
-      <h2 class="section-title">About This Portfolio</h2>
-      <p class="section-desc">This portfolio documents my learning journey in machine learning and emerging AI technologies. Each artifact captures a concept, skill, or project developed throughout my studies, with an emphasis on practical application and visual communication.</p>
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-bio">
+          <p>I'm a data engineer at Kroger working on high-scale transactional data pipelines. My day-to-day involves designing and maintaining end-to-end streaming and batch architectures that reliably handle <strong>~250 TPS</strong> and roughly <strong>10 million sales records</strong> in production.</p>
+          <p>Outside of work I'm deepening my knowledge of machine learning and AI — this portfolio captures that learning journey alongside my professional experience.</p>
+        </div>
+        <div class="skills-block">
+          <div class="skills-label">Tech Stack</div>
+          <div class="skills-wrap">
+            <span class="skill-tag">Databricks</span>
+            <span class="skill-tag">Azure</span>
+            <span class="skill-tag">PySpark</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Delta Lake</span>
+            <span class="skill-tag">Event Hubs</span>
+            <span class="skill-tag">Terraform</span>
+            <span class="skill-tag">GitHub Actions</span>
+            <span class="skill-tag">Dynatrace</span>
+            <span class="skill-tag">DataDog</span>
+            <span class="skill-tag">Agile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ────────────────────────────────────────── -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title">Experience &amp; Education</h2>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-dot current"></div>
+          <div class="tl-body">
+            <div class="tl-meta">Apr 2024 – Present</div>
+            <h3 class="tl-role">Advanced Data Engineer</h3>
+            <div class="tl-org">Kroger</div>
+            <p class="tl-desc">Owning the end-to-end sales data pipeline — from real-time Event Hub ingestion through streaming deduplication to medallion-architecture delta tables serving analytics and reporting.</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-meta">Mar 2023 – Mar 2024</div>
+            <h3 class="tl-role">Data Engineer</h3>
+            <div class="tl-org">Blue Space Technologies</div>
+            <p class="tl-desc">Designed and maintained data pipelines and analytics infrastructure supporting business intelligence workloads.</p>
+          </div>
+        </div>
+
+        <div class="tl-item edu">
+          <div class="tl-dot edu-dot"></div>
+          <div class="tl-body">
+            <div class="tl-meta">Aug 2021 – Feb 2023</div>
+            <h3 class="tl-role">M.S. Computer Science</h3>
+            <div class="tl-org">University at Buffalo, New York</div>
+            <p class="tl-desc">Graduate studies in computer science with a focus on distributed systems and data engineering.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PIPELINE ARCHITECTURE ─────────────────────────────── -->
+  <section id="pipeline" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Production Pipeline Architecture</h2>
+      <p class="section-desc">The live data pipeline at Kroger — from raw event ingestion to aggregated gold-layer tables.</p>
+
+      <div class="pipeline-flow">
+
+        <div class="pipe-stage">
+          <div class="pipe-icon" style="--c:#00d4ff">&#9741;</div>
+          <div class="pipe-label">Event Hub</div>
+          <div class="pipe-detail">~250 TPS<br />JSON payloads</div>
+        </div>
+        <div class="pipe-arrow">&#8594;</div>
+
+        <div class="pipe-stage">
+          <div class="pipe-icon" style="--c:#6c63ff">&#9654;</div>
+          <div class="pipe-label">Streaming Ingest</div>
+          <div class="pipe-detail">Structured Streaming<br />Raw Delta table</div>
+        </div>
+        <div class="pipe-arrow">&#8594;</div>
+
+        <div class="pipe-stage">
+          <div class="pipe-icon" style="--c:#f953c6">&#10227;</div>
+          <div class="pipe-label">Dedup Stream</div>
+          <div class="pipe-detail">Streaming dedup<br />Delta table</div>
+        </div>
+        <div class="pipe-arrow">&#8594;</div>
+
+        <div class="pipe-stage">
+          <div class="pipe-icon" style="--c:#f7971e">&#9646;</div>
+          <div class="pipe-label">Microbatch (15 min)</div>
+          <div class="pipe-detail">Bronze &#8594; Silver &#8594; Gold<br />Medallion architecture</div>
+        </div>
+
+      </div>
+
+      <div class="medallion-grid">
+        <div class="med-layer bronze">
+          <div class="med-title">Bronze</div>
+          <div class="med-desc">Raw, validated records landed from the dedup delta table every 15 minutes.</div>
+        </div>
+        <div class="med-layer silver">
+          <div class="med-title">Silver &mdash; 6 Tables</div>
+          <div class="med-desc">Cleansed, conformed sales data split across 6 domain tables representing the full sales model.</div>
+        </div>
+        <div class="med-layer gold">
+          <div class="med-title">Gold &mdash; 2 Tables</div>
+          <div class="med-desc">Aggregated analytics tables — one for <strong>items</strong>, one for <strong>coupons</strong> — serving downstream reporting.</div>
+        </div>
+      </div>
+
+      <div class="pipeline-stats">
+        <div class="stat-card">
+          <div class="stat-num">250</div>
+          <div class="stat-unit">TPS</div>
+          <div class="stat-label">Transactions per second</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10M+</div>
+          <div class="stat-unit">records</div>
+          <div class="stat-label">Sales records processed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">15</div>
+          <div class="stat-unit">min</div>
+          <div class="stat-label">Microbatch cadence</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">6 + 2</div>
+          <div class="stat-unit">tables</div>
+          <div class="stat-label">Silver + Gold layer</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -51,10 +195,9 @@
   <section id="artifacts" class="section">
     <div class="container">
       <h2 class="section-title">Artifacts</h2>
-      <p class="section-desc">Click any artifact card to explore it in detail.</p>
+      <p class="section-desc">Academic and professional artifacts documenting my learning journey.</p>
 
       <div class="artifact-grid">
-        <!-- ARTIFACT 1 -->
         <article class="artifact-card featured">
           <div class="artifact-badge">Featured</div>
           <div class="artifact-icon">&#x1F9E0;</div>
@@ -67,17 +210,17 @@
   </section>
 
   <!-- ── CONTACT ────────────────────────────────────────────── -->
-  <section id="contact" class="section section-contact">
+  <section id="contact" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Contact</h2>
-      <p class="section-desc">Reach out for collaboration, questions, or feedback on any portfolio artifact.</p>
+      <p class="section-desc">Open to collaboration, questions, or feedback on any portfolio artifact.</p>
     </div>
   </section>
 
   <!-- ── FOOTER ─────────────────────────────────────────────── -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 Portfolio. Built for professional development in ML &amp; AI.</p>
+      <p>&copy; 2026 Atharva Deshpande. Data Engineer &bull; University at Buffalo Alumni.</p>
     </div>
   </footer>
 
