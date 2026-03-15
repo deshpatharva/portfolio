@@ -215,7 +215,7 @@
       <h2 class="section-title">Contact</h2>
       <p class="section-desc">Open to collaboration, questions, or feedback on any portfolio artifact.</p>
 
-      <form class="contact-form" id="contactForm" novalidate>
+      <form class="contact-form" action="https://formspree.io/f/xjgaeydq" method="POST">
         <div class="form-row">
           <div class="form-group">
             <label for="cf-name">Name</label>
@@ -234,49 +234,11 @@
           <label for="cf-message">Message</label>
           <textarea id="cf-message" name="message" rows="5" placeholder="Your message..." required></textarea>
         </div>
-        <div class="form-footer">
-          <button type="submit" class="btn btn-primary form-submit">Send Message</button>
-          <p class="form-status" id="formStatus"></p>
-        </div>
+        <button type="submit" class="btn btn-primary form-submit">Send Message</button>
       </form>
     </div>
   </section>
 
-  <script>
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('formStatus');
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const btn = form.querySelector('.form-submit');
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      status.className = 'form-status';
-      status.textContent = '';
-
-      try {
-        const res = await fetch('https://formspree.io/f/xjgaeydq', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
-        });
-
-        if (res.ok) {
-          status.textContent = 'Message sent! I\'ll get back to you soon.';
-          status.classList.add('success');
-          form.reset();
-        } else {
-          throw new Error();
-        }
-      } catch {
-        status.textContent = 'Something went wrong. Please try again.';
-        status.classList.add('error');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Send Message';
-      }
-    });
-  </script>
 
 </body>
 </html>

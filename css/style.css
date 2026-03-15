@@ -387,12 +387,7 @@ a:hover { text-decoration: underline; }
   border-color: var(--accent1);
   box-shadow: 0 0 0 3px rgba(108,99,255,.15);
 }
-.form-footer { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .form-submit { border: none; cursor: pointer; }
-.form-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
-.form-status { font-size: .88rem; }
-.form-status.success { color: var(--accent4); }
-.form-status.error   { color: #ff6b6b; }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
