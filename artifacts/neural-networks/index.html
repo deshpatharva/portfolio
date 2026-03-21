@@ -41,6 +41,12 @@
           <div class="layer-label" style="left:57%">Hidden Layer 2</div>
           <div class="layer-label" style="left:82%">Output Layer</div>
 
+          <!-- Play button -->
+          <button class="nn-play-btn" id="playBtn" title="Run animated example">&#9654; Run Example</button>
+
+          <!-- Step annotation bar -->
+          <div class="nn-step-bar" id="stepBar"></div>
+
           <!-- SVG connections -->
           <svg class="nn-svg" id="nnSvg" width="100%" height="100%"></svg>
 
@@ -74,6 +80,28 @@
 
         </div>
 
+        <!-- Example legend: shown during/after animation -->
+        <div class="example-legend" id="exampleLegend">
+          <div class="ex-legend-col">
+            <div class="ex-legend-title">Input Features</div>
+            <div class="ex-legend-item"><span class="ex-tag" style="background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.3);color:#00d4ff">x₁</span><span class="ex-feat">Purchase Amount <em>0.82</em></span></div>
+            <div class="ex-legend-item"><span class="ex-tag" style="background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.3);color:#00d4ff">x₂</span><span class="ex-feat">Time of Day <em>0.34</em></span></div>
+            <div class="ex-legend-item"><span class="ex-tag" style="background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.3);color:#00d4ff">x₃</span><span class="ex-feat">Item Count <em>0.91</em></span></div>
+            <div class="ex-legend-item"><span class="ex-tag" style="background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.3);color:#00d4ff">x₄</span><span class="ex-feat">Customer Score <em>0.67</em></span></div>
+          </div>
+          <div class="ex-legend-divider">&#8594;</div>
+          <div class="ex-legend-col">
+            <div class="ex-legend-title">Task</div>
+            <div class="ex-legend-desc">Classify whether a sales transaction is <strong>Normal</strong> or an <strong>Anomaly</strong> based on behavioral features.</div>
+          </div>
+          <div class="ex-legend-divider">&#8594;</div>
+          <div class="ex-legend-col">
+            <div class="ex-legend-title">Output Prediction</div>
+            <div class="ex-legend-item" id="exOut0"><span class="ex-tag" style="background:rgba(249,83,198,.12);border-color:rgba(249,83,198,.3);color:#f953c6">ŷ₁</span><span class="ex-feat">Normal <em id="exVal0">—</em></span></div>
+            <div class="ex-legend-item" id="exOut1"><span class="ex-tag" style="background:rgba(249,83,198,.12);border-color:rgba(249,83,198,.3);color:#f953c6">ŷ₂</span><span class="ex-feat">Anomaly <em id="exVal1">—</em></span></div>
+          </div>
+        </div>
+
         <!-- Flow annotation -->
         <div class="flow-annotation">
           <div class="fa-step">
@@ -101,6 +129,36 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ── PLAYGROUND ── -->
+  <section class="section section-playground">
+    <div class="container">
+      <h2 class="sec-title">Try It Yourself</h2>
+      <p class="sec-desc">Experiment with the TensorFlow Neural Network Playground embedded below. Change the dataset, add layers, tweak the learning rate, and watch the decision boundary form in real time.</p>
+
+      <div class="playground-hints">
+        <div class="ph-item"><span class="ph-icon">&#127919;</span><div><strong>Start here</strong><span>Select the spiral dataset (bottom-left), click Play, and watch a shallow network struggle — then add more layers.</span></div></div>
+        <div class="ph-item"><span class="ph-icon">&#9881;</span><div><strong>Try this</strong><span>Set noise to 30, add x&#178; and y&#178; as features, and compare ReLU vs Tanh activation on the circle dataset.</span></div></div>
+        <div class="ph-item"><span class="ph-icon">&#128200;</span><div><strong>Watch for</strong><span>Training loss (orange) and test loss (blue) — when test loss climbs while training falls, that's overfitting.</span></div></div>
+      </div>
+
+      <div class="playground-frame-wrap">
+        <iframe
+          src="https://playground.tensorflow.org/"
+          title="TensorFlow Neural Network Playground"
+          class="playground-frame"
+          allow="accelerometer"
+          loading="lazy"
+        ></iframe>
+        <div class="playground-fallback" id="pgFallback">
+          <p>The playground could not be embedded in this environment.</p>
+          <a href="https://playground.tensorflow.org/" target="_blank" rel="noopener" class="btn btn-outline">Open Playground &#8599;</a>
+        </div>
+      </div>
+
+      <p class="playground-credit">TensorFlow Playground is an open-source project by the Google Brain team. <a href="https://playground.tensorflow.org/" target="_blank" rel="noopener">Open in full screen &#8599;</a></p>
     </div>
   </section>
 
@@ -354,6 +412,118 @@
     </div>
   </section>
 
+  <!-- ── FURTHER READING ── -->
+  <section class="section section-reading">
+    <div class="container">
+      <h2 class="sec-title">Further Reading</h2>
+      <p class="sec-desc">Curated resources to go deeper on every component covered in this artifact.</p>
+
+      <div class="reading-grid">
+
+        <div class="reading-group">
+          <div class="reading-group-title">Getting Started</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://playground.tensorflow.org" target="_blank" rel="noopener">TensorFlow Neural Network Playground</a>
+              <span class="reading-desc">The interactive tool used for this artifact. Train neural networks in your browser and watch decision boundaries form in real time.</span>
+            </li>
+            <li>
+              <a href="https://developers.google.com/machine-learning/crash-course/introduction-to-neural-networks/anatomy" target="_blank" rel="noopener">Google ML Crash Course: Neural Networks</a>
+              <span class="reading-desc">Concise, visual introduction to neural network anatomy covering nodes, layers, and the training loop. Free and beginner-friendly.</span>
+            </li>
+            <li>
+              <a href="https://www.3blue1brown.com/topics/neural-networks" target="_blank" rel="noopener">3Blue1Brown: Neural Networks Series</a>
+              <span class="reading-desc">Four-part YouTube series with stunning visuals. Best intuitive explanation of how neural networks and backpropagation actually work.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Activation Functions</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://ml-cheatsheet.readthedocs.io/en/latest/activation_functions.html" target="_blank" rel="noopener">ML Cheatsheet: Activation Functions</a>
+              <span class="reading-desc">Side-by-side reference for ReLU, Sigmoid, Tanh, Softmax, and more with formulas, graphs, and when to use each.</span>
+            </li>
+            <li>
+              <a href="https://pytorch.org/docs/stable/nn.html#non-linear-activations-weighted-sum-nonlinearity" target="_blank" rel="noopener">PyTorch: Non-linear Activations</a>
+              <span class="reading-desc">Official PyTorch documentation listing every activation function available with parameters and usage examples.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Loss Functions</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html" target="_blank" rel="noopener">ML Cheatsheet: Loss Functions</a>
+              <span class="reading-desc">Clear explanations of MSE, Cross-Entropy, Hinge Loss, and others with the math behind each and guidance on when to use them.</span>
+            </li>
+            <li>
+              <a href="https://pytorch.org/docs/stable/nn.html#loss-functions" target="_blank" rel="noopener">PyTorch: Loss Functions</a>
+              <span class="reading-desc">Official docs covering all PyTorch loss functions including BCELoss, CrossEntropyLoss, and MSELoss with code examples.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Optimization &amp; Backpropagation</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://ruder.io/optimizing-gradient-descent/" target="_blank" rel="noopener">An Overview of Gradient Descent Optimization</a>
+              <span class="reading-desc">The most-cited blog post on optimizers. Covers SGD, Momentum, RMSProp, Adam, and more with visual comparisons. Essential reading.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/1412.6980" target="_blank" rel="noopener">Adam: A Method for Stochastic Optimization (Paper)</a>
+              <span class="reading-desc">The original Adam optimizer paper by Kingma and Ba. Readable and includes experiments showing convergence advantages over SGD.</span>
+            </li>
+            <li>
+              <a href="https://cs231n.github.io/optimization-2/" target="_blank" rel="noopener">Stanford CS231n: Backpropagation &amp; Gradients</a>
+              <span class="reading-desc">Step-by-step walkthrough of the backpropagation algorithm with circuit diagrams and intuition for how gradients flow backwards.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Hands-on Practice</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://www.deeplearning.ai/courses/deep-learning-specialization/" target="_blank" rel="noopener">DeepLearning.AI: Deep Learning Specialization</a>
+              <span class="reading-desc">Andrew Ng's five-course series covering neural networks from scratch through CNNs, RNNs, and hyperparameter tuning.</span>
+            </li>
+            <li>
+              <a href="https://pytorch.org/tutorials/beginner/basics/intro.html" target="_blank" rel="noopener">PyTorch: Learn the Basics</a>
+              <span class="reading-desc">Official beginner tutorials walking through tensors, datasets, building models, training loops, and saving models.</span>
+            </li>
+            <li>
+              <a href="https://kaggle.com/learn/intro-to-deep-learning" target="_blank" rel="noopener">Kaggle: Intro to Deep Learning</a>
+              <span class="reading-desc">Free micro-course with runnable notebooks covering dense layers, activation functions, stochastic gradient descent, and dropout.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Books &amp; Deep Dives</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://d2l.ai/chapter_multilayer-perceptrons/index.html" target="_blank" rel="noopener">Dive into Deep Learning: MLPs</a>
+              <span class="reading-desc">Free interactive textbook chapter on multilayer perceptrons with math, code in PyTorch/TensorFlow, and exercises.</span>
+            </li>
+            <li>
+              <a href="https://www.deeplearningbook.org/contents/mlp.html" target="_blank" rel="noopener">Deep Learning Book: Feedforward Networks</a>
+              <span class="reading-desc">Chapter 6 of Goodfellow's textbook covers the theory of feedforward networks, activation functions, and gradient-based learning rigorously.</span>
+            </li>
+            <li>
+              <a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/" target="_blank" rel="noopener">Hands-On ML with Scikit-Learn, Keras &amp; TensorFlow</a>
+              <span class="reading-desc">Aurélien Géron's practical guide. Chapters 10 through 16 cover neural networks, training techniques, CNNs, and RNNs with full code.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ── REFLECTION ── -->
   <section class="section section-alt">
     <div class="container">
@@ -378,5 +548,16 @@
   </footer>
 
   <script src="diagram.js"></script>
+  <script>
+    // Show fallback if playground iframe is blocked
+    const frame = document.querySelector('.playground-frame');
+    const fallback = document.getElementById('pgFallback');
+    if (frame && fallback) {
+      frame.addEventListener('error', () => {
+        frame.style.display = 'none';
+        fallback.style.display = 'flex';
+      });
+    }
+  </script>
 </body>
 </html>

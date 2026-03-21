@@ -235,6 +235,7 @@ a:hover { text-decoration: underline; }
   padding: 3px 10px;
   border-radius: 99px;
 }
+.new-badge { background: linear-gradient(135deg, #43e97b, #00d4ff); }
 .artifact-icon { font-size: 2.4rem; margin-bottom: 16px; }
 .artifact-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
 .artifact-card p { color: var(--text-muted); font-size: .93rem; margin-bottom: 24px; }
