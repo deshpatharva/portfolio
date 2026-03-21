@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neural Networks Visualized | Atharva Deshpande</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── TOPBAR ── -->
+  <nav class="topbar">
+    <a href="../../index.html#artifacts" class="back-link">&#8592; Portfolio</a>
+    <span class="topbar-title">Neural Networks Visualized</span>
+    <span class="topbar-badge">Artifact 2</span>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <header class="artifact-hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Neural Networks &bull; Visual Presentation</p>
+      <h1>How Neural Networks<br /><span class="grad">Actually Work</span></h1>
+      <p class="hero-desc">A component-by-component breakdown of neural network architecture, with an interactive diagram, definitions, and key insights from training experiments on the Neural Network Playground.</p>
+    </div>
+  </header>
+
+  <!-- ── ARCHITECTURE DIAGRAM ── -->
+  <section class="section section-diagram">
+    <div class="container">
+      <h2 class="sec-title">Network Architecture</h2>
+      <p class="sec-desc">Data flows left to right: from raw input features, through hidden layers that learn representations, to a final output prediction. Hover over any neuron to highlight its connections.</p>
+
+      <div class="diagram-wrap">
+        <div class="nn-diagram" id="nnDiagram">
+
+          <!-- Layer labels -->
+          <div class="layer-label" style="left:7%">Input Layer</div>
+          <div class="layer-label" style="left:32%">Hidden Layer 1</div>
+          <div class="layer-label" style="left:57%">Hidden Layer 2</div>
+          <div class="layer-label" style="left:82%">Output Layer</div>
+
+          <!-- SVG connections -->
+          <svg class="nn-svg" id="nnSvg" width="100%" height="100%"></svg>
+
+          <!-- Neurons -->
+          <div class="nn-layer" id="layer0" style="left:7%">
+            <div class="neuron input-neuron" data-layer="0" data-idx="0"><span>x&#8321;</span></div>
+            <div class="neuron input-neuron" data-layer="0" data-idx="1"><span>x&#8322;</span></div>
+            <div class="neuron input-neuron" data-layer="0" data-idx="2"><span>x&#8323;</span></div>
+            <div class="neuron input-neuron" data-layer="0" data-idx="3"><span>x&#8324;</span></div>
+          </div>
+
+          <div class="nn-layer" id="layer1" style="left:32%">
+            <div class="neuron hidden-neuron" data-layer="1" data-idx="0"></div>
+            <div class="neuron hidden-neuron" data-layer="1" data-idx="1"></div>
+            <div class="neuron hidden-neuron" data-layer="1" data-idx="2"></div>
+            <div class="neuron hidden-neuron" data-layer="1" data-idx="3"></div>
+            <div class="neuron hidden-neuron" data-layer="1" data-idx="4"></div>
+          </div>
+
+          <div class="nn-layer" id="layer2" style="left:57%">
+            <div class="neuron hidden-neuron" data-layer="2" data-idx="0"></div>
+            <div class="neuron hidden-neuron" data-layer="2" data-idx="1"></div>
+            <div class="neuron hidden-neuron" data-layer="2" data-idx="2"></div>
+            <div class="neuron hidden-neuron" data-layer="2" data-idx="3"></div>
+          </div>
+
+          <div class="nn-layer" id="layer3" style="left:82%">
+            <div class="neuron output-neuron" data-layer="3" data-idx="0"><span>&#375;&#8321;</span></div>
+            <div class="neuron output-neuron" data-layer="3" data-idx="1"><span>&#375;&#8322;</span></div>
+          </div>
+
+        </div>
+
+        <!-- Flow annotation -->
+        <div class="flow-annotation">
+          <div class="fa-step">
+            <div class="fa-dot" style="background:#00d4ff"></div>
+            <div>
+              <strong>Forward pass</strong>
+              <span>Data multiplied by weights, summed, passed through activation</span>
+            </div>
+          </div>
+          <div class="fa-arrow">&#8594;</div>
+          <div class="fa-step">
+            <div class="fa-dot" style="background:#f7971e"></div>
+            <div>
+              <strong>Loss computed</strong>
+              <span>Prediction vs. true label measured</span>
+            </div>
+          </div>
+          <div class="fa-arrow">&#8594;</div>
+          <div class="fa-step">
+            <div class="fa-dot" style="background:#f953c6"></div>
+            <div>
+              <strong>Backpropagation</strong>
+              <span>Gradients flow back, weights updated</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPONENTS ── -->
+  <section class="section section-alt section-components">
+    <div class="container">
+      <h2 class="sec-title">Core Components</h2>
+      <p class="sec-desc">Every neural network is built from six fundamental building blocks. Understanding each one makes the whole system less of a black box.</p>
+
+      <div class="components-grid">
+
+        <!-- Layers -->
+        <div class="comp-card" id="comp-layers">
+          <div class="comp-glow" style="background:rgba(0,212,255,.15)"></div>
+          <div class="comp-number">01</div>
+          <div class="comp-icon" style="color:#00d4ff">&#9633;</div>
+          <h3 class="comp-title">Layers</h3>
+          <p class="comp-body">A layer is an organized group of neurons that transforms its inputs into outputs. Networks stack multiple layers so that each level can learn increasingly abstract representations of the data.</p>
+          <div class="comp-types">
+            <div class="comp-type">
+              <span class="comp-type-label" style="color:#00d4ff">Input Layer</span>
+              <p>Receives raw data — pixel values, numbers, embeddings. No computation happens here; it simply passes features into the network.</p>
+            </div>
+            <div class="comp-type">
+              <span class="comp-type-label" style="color:#43e97b">Hidden Layers</span>
+              <p>One or more intermediate layers where feature learning occurs. Deeper networks (more hidden layers) can represent more complex patterns.</p>
+            </div>
+            <div class="comp-type">
+              <span class="comp-type-label" style="color:#f953c6">Output Layer</span>
+              <p>Produces the final prediction — a class label, a probability, or a continuous value — depending on the task.</p>
+            </div>
+          </div>
+          <div class="comp-insight">
+            <span class="ci-label">Playground observation</span>
+            Adding a third hidden layer on the spiral dataset reduced training loss noticeably, but adding a fourth gave diminishing returns and started overfitting.
+          </div>
+        </div>
+
+        <!-- Neurons -->
+        <div class="comp-card" id="comp-neurons">
+          <div class="comp-glow" style="background:rgba(67,233,123,.12)"></div>
+          <div class="comp-number">02</div>
+          <div class="comp-icon" style="color:#43e97b">&#9711;</div>
+          <h3 class="comp-title">Neurons</h3>
+          <p class="comp-body">A neuron (or node) is the atomic unit of computation. It takes a weighted sum of all its inputs, adds a bias term, and passes the result through an activation function to produce a single output value.</p>
+          <div class="neuron-formula">
+            <div class="nf-eq">
+              <span class="nf-out">z</span>
+              <span class="nf-op">=</span>
+              <span class="nf-term">w&#8321;x&#8321; + w&#8322;x&#8322; + &hellip; + b</span>
+            </div>
+            <div class="nf-eq">
+              <span class="nf-out">output</span>
+              <span class="nf-op">=</span>
+              <span class="nf-term">&#963;(z)</span>
+            </div>
+            <div class="nf-legend">
+              <span><em>w</em> = weights &nbsp;&nbsp; <em>x</em> = inputs &nbsp;&nbsp; <em>b</em> = bias &nbsp;&nbsp; <em>&#963;</em> = activation fn</span>
+            </div>
+          </div>
+          <div class="comp-insight">
+            <span class="ci-label">Playground observation</span>
+            Increasing neurons per layer from 2 to 6 on the circle dataset allowed the boundary to become smoother and more accurate without the training time penalty of adding more layers.
+          </div>
+        </div>
+
+        <!-- Weights -->
+        <div class="comp-card" id="comp-weights">
+          <div class="comp-glow" style="background:rgba(247,151,30,.12)"></div>
+          <div class="comp-number">03</div>
+          <div class="comp-icon" style="color:#f7971e">&#8771;</div>
+          <h3 class="comp-title">Weights</h3>
+          <p class="comp-body">Weights are the learnable parameters — real numbers attached to each connection between neurons. They determine how much influence one neuron has on the next. Training a network is fundamentally the process of finding the right weights.</p>
+          <div class="weight-visual">
+            <div class="wv-node wv-in">x</div>
+            <div class="wv-edge">
+              <div class="wv-line"></div>
+              <div class="wv-weight">w = 0.73</div>
+            </div>
+            <div class="wv-node wv-out">&#963;</div>
+            <div class="wv-desc">Large positive weight: strong excitatory connection<br/>Negative weight: inhibitory connection<br/>Near-zero weight: weak or irrelevant connection</div>
+          </div>
+          <div class="comp-insight">
+            <span class="ci-label">Playground observation</span>
+            After convergence on the Gaussian dataset, the connection weights from irrelevant features (x&#8321; alone on a circular boundary) shrank close to zero while the x&#8321;&#178; and x&#8322;&#178; features had the largest weights.
+          </div>
+        </div>
+
+        <!-- Activation Functions -->
+        <div class="comp-card" id="comp-activations">
+          <div class="comp-glow" style="background:rgba(108,99,255,.15)"></div>
+          <div class="comp-number">04</div>
+          <div class="comp-icon" style="color:#6c63ff">&#x192;</div>
+          <h3 class="comp-title">Activation Functions</h3>
+          <p class="comp-body">Without an activation function, a neural network collapses to a single linear transformation no matter how many layers it has. Activation functions introduce non-linearity, giving the network the ability to learn complex, curved decision boundaries.</p>
+          <div class="activation-cards">
+            <div class="act-card">
+              <div class="act-name">ReLU</div>
+              <div class="act-graph relu-graph">
+                <svg viewBox="0 0 80 50" width="80" height="50">
+                  <line x1="0" y1="25" x2="80" y2="25" stroke="#252a45" stroke-width="1"/>
+                  <line x1="40" y1="0" x2="40" y2="50" stroke="#252a45" stroke-width="1"/>
+                  <polyline points="0,25 40,25 80,5" fill="none" stroke="#6c63ff" stroke-width="2.5"/>
+                </svg>
+              </div>
+              <p>max(0, x) — outputs 0 for negatives, x otherwise. Fast and sparse; default choice for most hidden layers.</p>
+            </div>
+            <div class="act-card">
+              <div class="act-name">Sigmoid</div>
+              <div class="act-graph">
+                <svg viewBox="0 0 80 50" width="80" height="50">
+                  <line x1="0" y1="25" x2="80" y2="25" stroke="#252a45" stroke-width="1"/>
+                  <line x1="40" y1="0" x2="40" y2="50" stroke="#252a45" stroke-width="1"/>
+                  <path d="M0,45 Q20,44 40,25 Q60,6 80,5" fill="none" stroke="#43e97b" stroke-width="2.5"/>
+                </svg>
+              </div>
+              <p>1/(1+e&#8315;&#8339;) — squashes output to (0, 1). Used in output layers for binary classification probability.</p>
+            </div>
+            <div class="act-card">
+              <div class="act-name">Tanh</div>
+              <div class="act-graph">
+                <svg viewBox="0 0 80 50" width="80" height="50">
+                  <line x1="0" y1="25" x2="80" y2="25" stroke="#252a45" stroke-width="1"/>
+                  <line x1="40" y1="0" x2="40" y2="50" stroke="#252a45" stroke-width="1"/>
+                  <path d="M0,45 Q15,43 40,25 Q65,7 80,5" fill="none" stroke="#f7971e" stroke-width="2.5"/>
+                </svg>
+              </div>
+              <p>Scaled sigmoid ranging from -1 to 1. Zero-centered, which can make gradient updates more symmetric.</p>
+            </div>
+          </div>
+          <div class="comp-insight">
+            <span class="ci-label">Playground observation</span>
+            Switching from Tanh to ReLU on the spiral dataset converged faster (fewer epochs to the same loss), but ReLU was more sensitive to the learning rate and would occasionally stall with a bad initialization.
+          </div>
+        </div>
+
+        <!-- Loss Functions -->
+        <div class="comp-card" id="comp-loss">
+          <div class="comp-glow" style="background:rgba(249,83,198,.12)"></div>
+          <div class="comp-number">05</div>
+          <div class="comp-icon" style="color:#f953c6">&#9660;</div>
+          <h3 class="comp-title">Loss Functions</h3>
+          <p class="comp-body">The loss function measures how wrong the network's prediction is. It produces a single number representing the gap between the predicted output and the true target. Training is the process of minimizing this number by adjusting weights.</p>
+          <div class="loss-cards">
+            <div class="loss-item">
+              <div class="loss-name">Mean Squared Error (MSE)</div>
+              <div class="loss-formula">L = (1/n) &Sigma; (y&#8342; &minus; &#375;&#8342;)&#178;</div>
+              <p>Penalizes large errors heavily. Used for regression tasks where the output is a continuous number.</p>
+            </div>
+            <div class="loss-item">
+              <div class="loss-name">Cross-Entropy Loss</div>
+              <div class="loss-formula">L = &minus;&Sigma; y&#8342; log(&#375;&#8342;)</div>
+              <p>Measures divergence between predicted probabilities and true class labels. Standard choice for classification.</p>
+            </div>
+          </div>
+          <div class="loss-insight-row">
+            <div class="loss-intuition">
+              <div class="li-bar-wrap">
+                <div class="li-label">Good prediction</div>
+                <div class="li-bar"><div class="li-fill" style="width:12%;background:#43e97b"></div></div>
+                <div class="li-val" style="color:#43e97b">Low loss</div>
+              </div>
+              <div class="li-bar-wrap">
+                <div class="li-label">Poor prediction</div>
+                <div class="li-bar"><div class="li-fill" style="width:78%;background:#f953c6"></div></div>
+                <div class="li-val" style="color:#f953c6">High loss</div>
+              </div>
+            </div>
+          </div>
+          <div class="comp-insight">
+            <span class="ci-label">Playground observation</span>
+            On the Playground's classification tasks, the test loss curve diverging above the training loss curve was a clear signal the model had started overfitting — time to reduce neurons or add noise.
+          </div>
+        </div>
+
+        <!-- Optimization Algorithms -->
+        <div class="comp-card" id="comp-optim">
+          <div class="comp-glow" style="background:rgba(196,113,237,.12)"></div>
+          <div class="comp-number">06</div>
+          <div class="comp-icon" style="color:#c471ed">&#9654;</div>
+          <h3 class="comp-title">Optimization Algorithms</h3>
+          <p class="comp-body">Optimization algorithms define how weights are updated after each pass through the data. They use gradients (the slope of the loss surface) to step the weights in the direction that reduces the loss.</p>
+          <div class="optim-cards">
+            <div class="optim-item">
+              <div class="optim-name">SGD</div>
+              <div class="optim-sub">Stochastic Gradient Descent</div>
+              <p>Updates weights using the gradient from a single sample or small batch. Simple but sensitive to learning rate. Can get stuck in local minima.</p>
+              <div class="optim-formula">w &#8592; w &minus; &#951; &nabla;L</div>
+            </div>
+            <div class="optim-item">
+              <div class="optim-name">Adam</div>
+              <div class="optim-sub">Adaptive Moment Estimation</div>
+              <p>Maintains per-parameter learning rates that adapt based on the history of gradients. Converges faster and is more robust to hyperparameter choice than plain SGD.</p>
+              <div class="optim-formula">w &#8592; w &minus; &#951; &middot; m̂ / (&#8730;v̂ + &#949;)</div>
+            </div>
+            <div class="optim-item">
+              <div class="optim-name">RMSProp</div>
+              <div class="optim-sub">Root Mean Square Propagation</div>
+              <p>Scales the learning rate by a running average of recent gradient magnitudes. Well-suited for non-stationary problems like recurrent networks.</p>
+              <div class="optim-formula">w &#8592; w &minus; &#951; / &#8730;E[g&#178;] &middot; g</div>
+            </div>
+          </div>
+          <div class="comp-insight">
+            <span class="ci-label">Playground observation</span>
+            With a high learning rate, SGD would oscillate and fail to converge on the spiral dataset. Reducing the rate helped, but Adam-style adaptive methods handle this automatically and reached lower loss in fewer steps.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SUMMARY ── -->
+  <section class="section section-summary">
+    <div class="container">
+      <h2 class="sec-title">Summary &amp; Key Insights</h2>
+      <p class="sec-desc">Why visualizing neural networks matters, and what the Playground experiments revealed.</p>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="summary-icon">&#127963;</div>
+          <h4>Architecture shapes capability</h4>
+          <p>The number of layers and neurons per layer directly determines what patterns a network can represent. Simple datasets need simple architectures. Adding depth beyond what the problem requires leads to overfitting and slower training.</p>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon">&#9881;</div>
+          <h4>Weights carry all the knowledge</h4>
+          <p>After training, the network's entire learned knowledge lives in its weights. The architecture is just a scaffold. Two networks with identical architectures but different weights represent completely different functions.</p>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon">&#128200;</div>
+          <h4>Loss is the compass</h4>
+          <p>Watching training vs. test loss together tells a complete story: both falling means the model is learning. Training falling while test rises means overfitting. Both staying high means underfitting (not enough capacity or training).</p>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon">&#127919;</div>
+          <h4>Activation functions unlock complexity</h4>
+          <p>Linear activations make a deep network equivalent to one layer. Non-linear activations like ReLU are what give depth its power. Choosing the wrong one can cause gradients to vanish (Sigmoid in deep nets) or dead neurons (ReLU with bad init).</p>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon">&#128260;</div>
+          <h4>Optimization is not one-size-fits-all</h4>
+          <p>The choice of optimizer and learning rate can be the difference between fast convergence and an unworkable model. Adaptive methods like Adam reduce the need for manual tuning but still reward careful hyperparameter choice.</p>
+        </div>
+        <div class="summary-card">
+          <div class="summary-icon">&#128161;</div>
+          <h4>Visualization accelerates understanding</h4>
+          <p>Seeing the decision boundary update in real time on the Playground made abstract concepts like overfitting, underfitting, and feature importance immediately intuitive. Reading about these effects is not the same as watching them happen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REFLECTION ── -->
+  <section class="section section-alt">
+    <div class="container">
+      <h2 class="sec-title">Reflection</h2>
+      <div class="reflection-card">
+        <p>I went into the Neural Network Playground expecting it to confirm things I already understood from my ML coursework. It mostly did, but a few things caught me off guard.</p>
+        <p>The biggest one was feature engineering. I kept reaching for more neurons and layers when the real fix was just adding x&#8321;&#178; or x&#8322;&#178; as an input feature. Once I did that, even a shallow network solved problems that a deeper one was struggling with. It reminded me of something I see in my data engineering work: cleaning and shaping the data right often matters more than tuning the system consuming it.</p>
+        <p>The loss curves were also more useful than I expected. Watching training loss drop while test loss climbed was a cleaner signal than any metric I usually track in production. In my pipeline work I rely on counts, latency, and error rates. Seeing a model equivalent made me think about whether similar curve-watching could apply to streaming job performance over time.</p>
+        <p>Building this presentation forced me to write out definitions I thought I knew. Activation functions were the hardest to explain clearly without just restating the formula. The Playground made the intuition real: a network with linear activations draws straight lines no matter how many layers you add. Watching that change the moment you switch to ReLU was worth more than any textbook paragraph.</p>
+        <p>I'll carry the loss curve habit forward. It's a simple tool and an honest one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="art-footer">
+    <div class="container">
+      <span>Atharva Deshpande &mdash; Portfolio Artifact 2</span>
+      <a href="https://playground.tensorflow.org" target="_blank" rel="noopener">Neural Network Playground &#8599;</a>
+      <a href="../../index.html#artifacts">Back to Portfolio</a>
+    </div>
+  </footer>
+
+  <script src="diagram.js"></script>
+</body>
+</html>
