@@ -576,17 +576,72 @@ a:hover { text-decoration: underline; }
 .reading-desc { font-size: .78rem; color: var(--text-muted); line-height: 1.55; }
 
 /* ── Responsive ── */
+/* ── Tablet (≤1000px) ── */
 @media (max-width: 1000px) {
-  .components-grid { grid-template-columns: 1fr; }
-  .summary-grid    { grid-template-columns: repeat(2, 1fr); }
+  .components-grid  { grid-template-columns: 1fr; }
+  .summary-grid     { grid-template-columns: repeat(2, 1fr); }
   .activation-cards { grid-template-columns: 1fr; }
-  .optim-cards     { grid-template-columns: 1fr; }
-  .reading-grid    { grid-template-columns: repeat(2, 1fr); }
+  .optim-cards      { grid-template-columns: 1fr; }
+  .reading-grid     { grid-template-columns: repeat(2, 1fr); }
+  .playground-hints { flex-direction: column; }
 }
+
+/* ── Mobile (≤640px) ── */
 @media (max-width: 640px) {
-  .nn-diagram { height: 260px; }
+  /* Topbar */
+  .topbar { padding: 0 14px; gap: 10px; }
+  .topbar-title { font-size: .8rem; }
+  .topbar-badge { display: none; }
+
+  /* Hero */
+  .artifact-hero { padding: 60px 16px 48px; }
+  .hero-desc { font-size: .92rem; }
+
+  /* Section spacing */
+  .section { padding: 52px 0; }
+  .container { padding: 0 16px; }
+  .sec-desc { margin-bottom: 32px; }
+
+  /* Diagram */
+  .nn-diagram { height: 220px; }
+  .layer-label { font-size: .55rem; letter-spacing: 0; }
+  .neuron { width: 34px; height: 34px; font-size: .6rem; }
+  .nn-layer { gap: 12px; }
+  .nn-play-btn { font-size: .7rem; padding: 5px 10px; top: 10px; right: 10px; }
+  .nn-step-bar { font-size: .68rem; padding: 4px 12px; max-width: 90%; white-space: normal; text-align: center; }
+
+  /* Example legend */
+  .example-legend { flex-direction: column; gap: 14px; padding: 14px 16px; }
+  .ex-legend-divider { display: none; }
+  .ex-legend-col { min-width: unset; }
+
+  /* Flow annotation */
+  .flow-annotation { flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px 16px; }
+  .fa-arrow { display: none; }
+  .fa-step { min-width: unset; }
+
+  /* Playground */
+  .playground-frame-wrap { height: 480px; border-radius: 10px; }
+  .ph-item { padding: 12px 14px; }
+
+  /* Component cards */
+  .comp-card { padding: 22px 18px; }
+  .activation-cards { grid-template-columns: 1fr; }
+  .optim-cards      { grid-template-columns: 1fr; }
+
+  /* Weight visual */
+  .weight-visual { flex-wrap: wrap; }
+  .wv-desc { width: 100%; }
+
+  /* Neuron formula */
+  .nf-eq { font-size: .78rem; flex-wrap: wrap; }
+
+  /* Summary */
   .summary-grid { grid-template-columns: 1fr; }
+
+  /* Reading */
   .reading-grid { grid-template-columns: 1fr; }
-  .flow-annotation { flex-direction: column; align-items: flex-start; }
-  .reflection-card { padding: 24px; }
+
+  /* Reflection */
+  .reflection-card { padding: 20px 16px; }
 }
