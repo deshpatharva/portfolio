@@ -34,9 +34,8 @@
 
       <div class="diagram-wrap">
 
-        <!-- Controls bar: button + swipe hint (never scrolls) -->
+        <!-- Controls bar: button only on desktop, swipe hint injected via CSS on mobile -->
         <div class="nn-controls-bar">
-          <span class="nn-swipe-hint">&#8592; swipe diagram to explore &#8594;</span>
           <button class="nn-play-btn" id="playBtn" title="Run animated example">&#9654; Run Example</button>
         </div>
 
@@ -549,11 +548,11 @@
     <div class="container">
       <h2 class="sec-title">Reflection</h2>
       <div class="reflection-card">
-        <p>I went into the Neural Network Playground expecting it to confirm things I already understood from my ML coursework. It mostly did, but a few things caught me off guard.</p>
-        <p>The biggest one was feature engineering. I kept reaching for more neurons and layers when the real fix was just adding x&#8321;&#178; or x&#8322;&#178; as an input feature. Once I did that, even a shallow network solved problems that a deeper one was struggling with. It reminded me of something I see in my data engineering work: cleaning and shaping the data right often matters more than tuning the system consuming it.</p>
-        <p>The loss curves were also more useful than I expected. Watching training loss drop while test loss climbed was a cleaner signal than any metric I usually track in production. In my pipeline work I rely on counts, latency, and error rates. Seeing a model equivalent made me think about whether similar curve-watching could apply to streaming job performance over time.</p>
-        <p>Building this presentation forced me to write out definitions I thought I knew. Activation functions were the hardest to explain clearly without just restating the formula. The Playground made the intuition real: a network with linear activations draws straight lines no matter how many layers you add. Watching that change the moment you switch to ReLU was worth more than any textbook paragraph.</p>
-        <p>I'll carry the loss curve habit forward. It's a simple tool and an honest one.</p>
+        <p>I went into the Neural Network Playground thinking it would just confirm what I already knew from my ML coursework. Mostly it did, but a few things genuinely surprised me.</p>
+        <p>The biggest was feature engineering. My first instinct whenever something wasn't working was to throw more neurons and layers at it. Turns out, just adding x&#8321;&#178; or x&#8322;&#178; as an input feature did what a deeper network couldn't. That hit close to home actually. It's the same lesson I keep relearning in data engineering. Getting the data right upstream almost always beats optimizing whatever's downstream.</p>
+        <p>The loss curves were another thing I didn't expect to find so useful. There's something weirdly satisfying about watching training loss fall while test loss starts climbing. It's a cleaner, more honest signal than most of what I track in production pipelines. I'm used to counts, latency, error rates. Seeing that same idea play out in a model made me wonder if you could apply something similar to streaming job performance over time. Not sure exactly how, but it stuck with me.</p>
+        <p>Writing the presentation was harder than I expected too. Activation functions specifically: I thought I understood them, but explaining them clearly without just reciting the formula was a different story. The Playground actually helped here. A network with linear activations draws straight lines no matter how many layers you stack. The moment you flip to ReLU and watch that change, that's worth more than a textbook page.</p>
+        <p>The loss curve habit is something I'm keeping. Simple, honest, and it tells you something real.</p>
       </div>
     </div>
   </section>

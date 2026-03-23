@@ -114,11 +114,6 @@ a:hover { text-decoration: underline; }
   background: var(--bg-card);
   gap: 12px;
 }
-.nn-swipe-hint {
-  font-size: .72rem;
-  color: var(--text-muted);
-  letter-spacing: .04em;
-}
 
 /* ── Label row (inside scroll — width matches diagram exactly) ── */
 .nn-label-row-inner {
@@ -662,28 +657,32 @@ a:hover { text-decoration: underline; }
   .sec-title { font-size: 1.35rem; }
   .sec-desc { margin-bottom: 28px; font-size: .88rem; }
 
-  /* diagram-wrap: allow overflow so child scroll works */
-  .diagram-wrap { overflow: visible; }
+  /* diagram-wrap: restore clipping */
+  .diagram-wrap { overflow: hidden; }
 
-  /* nn-diagram-scroll: THIS is the horizontal scroller */
-  .nn-diagram-scroll {
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    border-bottom: 1px solid var(--border);
-  }
+  /* scroll wrapper: no scroll needed — diagram fits the screen */
+  .nn-diagram-scroll { overflow: visible; }
 
-  /* nn-diagram: fixed size for scroll */
-  .nn-diagram { min-width: 540px; height: 320px; }
+  /* diagram fits phone width */
+  .nn-diagram { width: 100%; min-width: unset; height: 260px; }
 
-  /* Controls bar on mobile */
+  /* Neurons: slightly larger for readability */
+  .nn-layer { gap: 8px; }
+  .neuron { width: 34px; height: 34px; font-size: .58rem; }
+
+  /* Controls bar: no swipe hint needed */
   .nn-controls-bar { padding: 8px 12px; }
-  .nn-swipe-hint { font-size: .65rem; }
+  .nn-controls-bar::before { content: none; }
   .nn-play-btn { font-size: .68rem; padding: 4px 10px; }
 
-  /* Label row on mobile */
-  .nn-label-row-inner { height: 24px; }
-  .layer-label { font-size: .52rem; letter-spacing: 0; }
+  /* Label row: full width, no min-width override */
+  .nn-label-row-inner { height: 22px; min-width: unset; }
+  .layer-label { font-size: .5rem; letter-spacing: 0; }
+
+  /* First label: don't clip left edge */
+  .layer-label:first-child { left: 2px !important; transform: none; }
+  /* Last label: give breathing room from right edge */
+  .layer-label:last-child  { left: auto !important; right: 10px; transform: none; }
 
   .nn-step-bar {
     font-size: .66rem; padding: 4px 10px;
