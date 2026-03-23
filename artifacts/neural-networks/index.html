@@ -33,16 +33,25 @@
       <p class="sec-desc">Data flows left to right: from raw input features, through hidden layers that learn representations, to a final output prediction. Hover over any neuron to highlight its connections.</p>
 
       <div class="diagram-wrap">
-        <div class="nn-diagram" id="nnDiagram">
 
-          <!-- Layer labels -->
-          <div class="layer-label" style="left:7%">Input Layer</div>
-          <div class="layer-label" style="left:32%">Hidden Layer 1</div>
-          <div class="layer-label" style="left:57%">Hidden Layer 2</div>
-          <div class="layer-label" style="left:82%">Output Layer</div>
-
-          <!-- Play button -->
+        <!-- Controls bar: button + swipe hint (never scrolls) -->
+        <div class="nn-controls-bar">
+          <span class="nn-swipe-hint">&#8592; swipe diagram to explore &#8594;</span>
           <button class="nn-play-btn" id="playBtn" title="Run animated example">&#9654; Run Example</button>
+        </div>
+
+        <!-- Scrollable area: labels + diagram scroll together = perfect alignment -->
+        <div class="nn-diagram-scroll">
+
+          <!-- Label row inside the scroll so % positions match neurons exactly -->
+          <div class="nn-label-row-inner">
+            <div class="layer-label" style="left:7%">Input Layer</div>
+            <div class="layer-label" style="left:32%">Hidden Layer 1</div>
+            <div class="layer-label" style="left:57%">Hidden Layer 2</div>
+            <div class="layer-label" style="left:82%">Output Layer</div>
+          </div>
+
+          <div class="nn-diagram" id="nnDiagram">
 
           <!-- Step annotation bar -->
           <div class="nn-step-bar" id="stepBar"></div>
@@ -78,7 +87,8 @@
             <div class="neuron output-neuron" data-layer="3" data-idx="1"><span>&#375;&#8322;</span></div>
           </div>
 
-        </div>
+        </div><!-- /nn-diagram -->
+        </div><!-- /nn-diagram-scroll -->
 
         <!-- Example legend: shown during/after animation -->
         <div class="example-legend" id="exampleLegend">
@@ -155,6 +165,16 @@
         <div class="playground-fallback" id="pgFallback">
           <p>The playground could not be embedded in this environment.</p>
           <a href="https://playground.tensorflow.org/" target="_blank" rel="noopener" class="btn btn-outline">Open Playground &#8599;</a>
+        </div>
+      </div>
+
+      <!-- Mobile CTA (shown instead of iframe on small screens) -->
+      <div class="playground-mobile-cta">
+        <div class="pmc-icon">&#127358;</div>
+        <div class="pmc-body">
+          <strong>Best experienced on desktop</strong>
+          <p>The TensorFlow Playground is a full interactive tool. Open it in your browser for the full experience.</p>
+          <a href="https://playground.tensorflow.org/" target="_blank" rel="noopener" class="pmc-btn">Open Neural Network Playground &#8599;</a>
         </div>
       </div>
 
