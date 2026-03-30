@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How LLMs Are Built — Training &amp; Infrastructure | Atharva Deshpande</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── TOPBAR ── -->
+  <nav class="topbar">
+    <a href="../../index.html#artifacts" class="back-link">&#8592; Portfolio</a>
+    <span class="topbar-title">Generative AI: Training &amp; Infrastructure</span>
+    <span class="topbar-badge">Artifact 3</span>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span class="mono">Generative AI &bull; LLM Training Lifecycle</span>
+      </div>
+      <h1 class="hero-title">From Raw Text<br /><span class="accent">to Reasoning Machines</span></h1>
+      <p class="hero-sub">An infographic exploring the key stages, compute costs, and infrastructure required to train state-of-the-art generative AI — from GPT-4 to Claude to LLaMA.</p>
+
+      <div class="hero-stats" role="list" aria-label="Key statistics">
+        <div class="hstat" role="listitem">
+          <div class="hstat-val">~$100M+</div>
+          <div class="hstat-label">GPT-4 training est.</div>
+        </div>
+        <div class="hstat-div" aria-hidden="true"></div>
+        <div class="hstat" role="listitem">
+          <div class="hstat-val">13T</div>
+          <div class="hstat-label">tokens in GPT-4 dataset</div>
+        </div>
+        <div class="hstat-div" aria-hidden="true"></div>
+        <div class="hstat" role="listitem">
+          <div class="hstat-val">25,000</div>
+          <div class="hstat-label">A100 GPUs for GPT-4</div>
+        </div>
+        <div class="hstat-div" aria-hidden="true"></div>
+        <div class="hstat" role="listitem">
+          <div class="hstat-val">~564 MWh</div>
+          <div class="hstat-label">LLaMA 65B energy use</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── KEY CONCEPTS ── -->
+  <section class="section section-alt" aria-labelledby="concepts-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">01 — Key Concepts</span>
+        <h2 class="section-title" id="concepts-heading">Essential Terms Explained</h2>
+        <p class="section-desc">Eight foundational concepts that underpin every large language model — from architecture to emergent behavior. Read this first before exploring the pipeline.</p>
+      </div>
+
+      <div class="concepts-grid">
+
+        <div class="concept-card" data-cat="arch">
+          <div class="concept-tag mono">Architecture</div>
+          <h3 class="concept-name">Transformer</h3>
+          <p class="concept-short">The neural network design powering every modern LLM.</p>
+          <p class="concept-body">Introduced in the 2017 paper "Attention Is All You Need," the Transformer replaced recurrent networks (RNNs/LSTMs) for language tasks. Its key innovation is the self-attention mechanism, which allows any token in a sequence to directly interact with any other token — regardless of distance — in parallel. Modern LLMs use a <em>decoder-only</em> variant (like GPT), which generates text left-to-right by predicting the next token, masked so it cannot look ahead.</p>
+        </div>
+
+        <div class="concept-card" data-cat="data">
+          <div class="concept-tag mono">Preprocessing</div>
+          <h3 class="concept-name">Tokenization &amp; BPE</h3>
+          <p class="concept-short">How text is broken into the units a model actually sees.</p>
+          <p class="concept-body">LLMs don't read characters or whole words — they read <em>tokens</em>, which are subword fragments. Byte-Pair Encoding (BPE) starts with individual characters and merges the most frequent adjacent pairs iteratively until a target vocabulary size (typically 32K–100K tokens) is reached. The word "unbelievable" might become three tokens: "un", "believ", "able". This balances vocabulary coverage with sequence length. The tokenizer is fixed before training begins and the model never sees raw text — only token IDs.</p>
+        </div>
+
+        <div class="concept-card" data-cat="arch">
+          <div class="concept-tag mono">Mechanism</div>
+          <h3 class="concept-name">Self-Attention</h3>
+          <p class="concept-short">How every token "decides" what other tokens are relevant to it.</p>
+          <p class="concept-body">For each token, the model computes three vectors: a <em>Query</em> (what am I looking for?), a <em>Key</em> (what do I represent?), and a <em>Value</em> (what information do I carry?). The dot product of Q and K gives an attention score — higher scores mean "pay more attention here." These scores are softmax-normalized and used to weight the Values, producing a context-aware representation for each token. <em>Multi-head attention</em> runs this process in parallel across many "heads," each learning different relationship types (syntax, coreference, semantics, etc.).</p>
+        </div>
+
+        <div class="concept-card" data-cat="scale">
+          <div class="concept-tag mono">Scale</div>
+          <h3 class="concept-name">Parameters</h3>
+          <p class="concept-short">The learned numbers the model stores — its "memory."</p>
+          <p class="concept-body">A model's parameters are all of its learned weights — the numbers adjusted during training via gradient descent. GPT-3 has 175 billion parameters; GPT-4 is estimated at ~1.8 trillion. More parameters generally means more capacity to store knowledge and handle complex tasks, but also means more compute, memory, and inference cost. Parameters are stored in the model's weight matrices (attention heads, feed-forward layers, embeddings) and are fixed after training — they don't change at inference time unless the model is fine-tuned again.</p>
+        </div>
+
+        <div class="concept-card" data-cat="arch">
+          <div class="concept-tag mono">Architecture</div>
+          <h3 class="concept-name">Context Window</h3>
+          <p class="concept-short">The maximum text a model can "see" at once.</p>
+          <p class="concept-body">Every LLM has a fixed context window — the maximum number of tokens it can process in a single forward pass. GPT-3 had 4,096 tokens; Claude 3 supports 200,000 tokens; Gemini 1.5 Pro reaches 1 million. Longer windows let the model reference earlier parts of a conversation or document, but memory and compute scale quadratically with context length in standard attention. Techniques like sliding window attention, FlashAttention, and Ring Attention make long contexts tractable without the full quadratic cost.</p>
+        </div>
+
+        <div class="concept-card" data-cat="train">
+          <div class="concept-tag mono">Training</div>
+          <h3 class="concept-name">Loss &amp; Cross-Entropy</h3>
+          <p class="concept-short">The signal that tells the model how wrong it was.</p>
+          <p class="concept-body">During pre-training, the model outputs a probability distribution over all tokens in its vocabulary as predictions for "what comes next." <em>Cross-entropy loss</em> measures how far the predicted distribution is from the correct answer (the actual next token). A perfect prediction has loss = 0; a random guess over 50,000 tokens has loss ≈ 10.8. The model's weights are adjusted via backpropagation to reduce this loss across billions of examples. Perplexity (2^loss) is the human-readable form: a perplexity of 10 means the model was as confused as if it had 10 equally plausible choices at every step.</p>
+        </div>
+
+        <div class="concept-card" data-cat="behavior">
+          <div class="concept-tag mono">Behavior</div>
+          <h3 class="concept-name">Hallucination</h3>
+          <p class="concept-short">When the model generates confident but false information.</p>
+          <p class="concept-body">LLMs are trained to predict plausible text, not to retrieve verified facts. This means they can "hallucinate" — produce fluent, confident statements that are factually wrong, cite papers that don't exist, or invent biographical details. Hallucination emerges because the model's objective is next-token plausibility, not factual accuracy. RLHF reduces (but doesn't eliminate) hallucination by penalizing incorrect outputs. Retrieval-Augmented Generation (RAG) addresses it by grounding responses in retrieved documents at inference time, giving the model a factual source to reference rather than relying on trained weights alone.</p>
+        </div>
+
+        <div class="concept-card" data-cat="scale">
+          <div class="concept-tag mono">Scale</div>
+          <h3 class="concept-name">Emergent Capabilities</h3>
+          <p class="concept-short">Abilities that appear at scale without being explicitly trained.</p>
+          <p class="concept-body">As models grow larger, they develop capabilities that smaller models lack entirely — not as gradual improvements, but as sudden phase transitions. Chain-of-thought reasoning, few-shot learning, code generation, and arithmetic appear to "emerge" when models cross certain parameter thresholds. The 2022 paper "Emergent Abilities of Large Language Models" documented this across ~100 tasks. The precise mechanism is debated: some researchers argue these are artifacts of evaluation metrics rather than true discontinuities. Regardless, emergence is why scaling laws (Chinchilla, GPT-4 technical report) are central to modern LLM research — bigger models can do qualitatively different things.</p>
+        </div>
+
+      </div>
+
+      <!-- Abbreviations Reference -->
+      <div class="abbr-section" aria-labelledby="abbr-heading">
+        <h3 class="abbr-heading" id="abbr-heading">
+          <span class="mono">Abbreviations used on this page</span>
+        </h3>
+        <div class="abbr-grid" role="list">
+          <div class="abbr-item" role="listitem"><span class="abbr-term">LLM</span><span class="abbr-full">Large Language Model</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">GPT</span><span class="abbr-full">Generative Pre-trained Transformer</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">RLHF</span><span class="abbr-full">Reinforcement Learning from Human Feedback</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">SFT</span><span class="abbr-full">Supervised Fine-tuning</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">BPE</span><span class="abbr-full">Byte-Pair Encoding</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">CLM</span><span class="abbr-full">Causal Language Modeling</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">PPO</span><span class="abbr-full">Proximal Policy Optimization</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">KL</span><span class="abbr-full">Kullback–Leibler Divergence</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">RAG</span><span class="abbr-full">Retrieval-Augmented Generation</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">CAI</span><span class="abbr-full">Constitutional AI (Anthropic)</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">MoE</span><span class="abbr-full">Mixture of Experts</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">FSDP</span><span class="abbr-full">Fully Sharded Data Parallel</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">BF16</span><span class="abbr-full">Brain Float 16 (numeric precision)</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">INT8</span><span class="abbr-full">8-bit Integer Quantization</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">NLP</span><span class="abbr-full">Natural Language Processing</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">GPU</span><span class="abbr-full">Graphics Processing Unit</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">TPU</span><span class="abbr-full">Tensor Processing Unit</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">AdamW</span><span class="abbr-full">Adam Optimizer with Weight Decay</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">MWh</span><span class="abbr-full">Megawatt-hours (energy unit)</span></div>
+          <div class="abbr-item" role="listitem"><span class="abbr-term">API</span><span class="abbr-full">Application Programming Interface</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PIPELINE ── -->
+  <section class="section" aria-labelledby="pipeline-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">02 — Process</span>
+        <h2 class="section-title" id="pipeline-heading">The LLM Training Pipeline</h2>
+        <p class="section-desc">Six stages transform petabytes of raw internet text into a capable, aligned language model ready for deployment.</p>
+      </div>
+
+      <div class="pipeline" role="list">
+
+        <div class="pipe-step" data-phase="data" role="listitem" style="--delay:0s">
+          <div class="pipe-num mono" aria-hidden="true">01</div>
+          <div class="pipe-icon" aria-hidden="true">🌐</div>
+          <div class="pipe-body">
+            <h3 class="pipe-title">Data Collection</h3>
+            <p class="pipe-desc">Petabytes of text scraped from the web, books, academic papers, and code repositories form the raw training corpus — the raw material for everything that follows.</p>
+            <ul class="pipe-tags" aria-label="Data sources">
+              <li>Common Crawl (web)</li>
+              <li>Books &amp; literature</li>
+              <li>GitHub code repos</li>
+              <li>Wikipedia + Wikidata</li>
+              <li>ArXiv research papers</li>
+            </ul>
+          </div>
+          <div class="pipe-metric" aria-label="Metric: approximately 5 trillion raw tokens">
+            <span class="metric-val">~5T</span>
+            <span class="metric-lbl">raw tokens</span>
+          </div>
+        </div>
+
+        <div class="pipe-step" data-phase="data" role="listitem" style="--delay:.08s">
+          <div class="pipe-num mono" aria-hidden="true">02</div>
+          <div class="pipe-icon" aria-hidden="true">⚙️</div>
+          <div class="pipe-body">
+            <h3 class="pipe-title">Data Preprocessing</h3>
+            <p class="pipe-desc">Raw text is cleaned, deduplicated, filtered for quality, and tokenized into subword units. Up to 60% of raw data may be discarded before a token is ever fed to a model.</p>
+            <ul class="pipe-tags" aria-label="Preprocessing steps">
+              <li>Deduplication (MinHash)</li>
+              <li>Quality filtering</li>
+              <li>Tokenization (BPE)</li>
+              <li>Language filtering</li>
+              <li>PII removal</li>
+            </ul>
+          </div>
+          <div class="pipe-metric" aria-label="Metric: approximately 60 percent of data discarded">
+            <span class="metric-val">~60%</span>
+            <span class="metric-lbl">data discarded</span>
+          </div>
+        </div>
+
+        <div class="pipe-step" data-phase="compute" role="listitem" style="--delay:.16s">
+          <div class="pipe-num mono" aria-hidden="true">03</div>
+          <div class="pipe-icon" aria-hidden="true">🔥</div>
+          <div class="pipe-body">
+            <h3 class="pipe-title">Pre-training</h3>
+            <p class="pipe-desc">The model learns to predict the next token across trillions of examples via causal language modeling. Through this process it develops grammar, factual recall, reasoning patterns, and coding syntax — entirely unsupervised.</p>
+            <ul class="pipe-tags" aria-label="Pre-training techniques">
+              <li>Next-token prediction (CLM)</li>
+              <li>Transformer decoder</li>
+              <li>AdamW + cosine LR</li>
+              <li>Mixed-precision (BF16)</li>
+              <li>FSDP / Megatron parallelism</li>
+            </ul>
+          </div>
+          <div class="pipe-metric" aria-label="Metric: over 90 percent of total compute">
+            <span class="metric-val">90%+</span>
+            <span class="metric-lbl">of total compute</span>
+          </div>
+        </div>
+
+        <div class="pipe-step" data-phase="align" role="listitem" style="--delay:.24s">
+          <div class="pipe-num mono" aria-hidden="true">04</div>
+          <div class="pipe-icon" aria-hidden="true">📝</div>
+          <div class="pipe-body">
+            <h3 class="pipe-title">Supervised Fine-tuning (SFT)</h3>
+            <p class="pipe-desc">Human annotators write thousands of (instruction, ideal response) pairs. The pre-trained base model is fine-tuned on these examples, transforming a raw text-completion engine into one that follows user instructions.</p>
+            <ul class="pipe-tags" aria-label="SFT details">
+              <li>10K–100K labeled examples</li>
+              <li>Instruction-following format</li>
+              <li>Human demonstrations</li>
+              <li>Domain-specific tasks</li>
+              <li>Lower learning rate</li>
+            </ul>
+          </div>
+          <div class="pipe-metric" aria-label="Metric: approximately 1 percent of pre-training cost">
+            <span class="metric-val">~1%</span>
+            <span class="metric-lbl">of pretraining cost</span>
+          </div>
+        </div>
+
+        <div class="pipe-step" data-phase="align" role="listitem" style="--delay:.32s">
+          <div class="pipe-num mono" aria-hidden="true">05</div>
+          <div class="pipe-icon" aria-hidden="true">🎯</div>
+          <div class="pipe-body">
+            <h3 class="pipe-title">RLHF &amp; Alignment</h3>
+            <p class="pipe-desc">Human raters rank competing model responses. A reward model is trained on these preferences, then used to guide PPO optimization — nudging the LLM toward outputs humans prefer while maintaining capability.</p>
+            <ul class="pipe-tags" aria-label="RLHF techniques">
+              <li>Human preference rankings</li>
+              <li>Reward model training</li>
+              <li>PPO optimization</li>
+              <li>Constitutional AI (Anthropic)</li>
+              <li>Safety filtering</li>
+            </ul>
+          </div>
+          <div class="pipe-metric" aria-label="Metric: weeks of iteration">
+            <span class="metric-val">Weeks</span>
+            <span class="metric-lbl">of iteration</span>
+          </div>
+        </div>
+
+        <div class="pipe-step" data-phase="deploy" role="listitem" style="--delay:.4s">
+          <div class="pipe-num mono" aria-hidden="true">06</div>
+          <div class="pipe-icon" aria-hidden="true">🚀</div>
+          <div class="pipe-body">
+            <h3 class="pipe-title">Deployment &amp; Serving</h3>
+            <p class="pipe-desc">The aligned model is quantized, optimized for inference speed, and served through distributed infrastructure that must handle millions of concurrent requests at low latency with strict uptime guarantees.</p>
+            <ul class="pipe-tags" aria-label="Deployment techniques">
+              <li>Quantization (INT8/INT4)</li>
+              <li>vLLM / TensorRT-LLM</li>
+              <li>KV-cache management</li>
+              <li>Safety filters + rate limits</li>
+              <li>Continuous monitoring</li>
+            </ul>
+          </div>
+          <div class="pipe-metric" aria-label="Metric: ongoing inference cost">
+            <span class="metric-val">Ongoing</span>
+            <span class="metric-lbl">inference cost</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── RESOURCES ── -->
+  <section class="section section-alt" aria-labelledby="resources-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">03 — Resources</span>
+        <h2 class="section-title" id="resources-heading">What Training Actually Costs</h2>
+        <p class="section-desc">Training frontier models requires extraordinary compute, energy, data, and time — costs that continue to rise with each generation.</p>
+      </div>
+
+      <div class="resource-grid">
+
+        <div class="resource-card">
+          <div class="resource-icon" aria-hidden="true">⚡</div>
+          <div class="resource-lbl mono">Compute</div>
+          <div class="resource-big">~25,000</div>
+          <div class="resource-unit">NVIDIA A100 GPUs</div>
+          <p class="resource-detail">GPT-4 required tens of thousands of the world's fastest AI accelerators running continuously for months. A single A100 retails above $10,000, making hardware alone a multi-hundred-million dollar investment before a single token is trained.</p>
+          <div class="resource-bar" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100" aria-label="Relative cost: 92%">
+            <div class="resource-fill" style="--pct:92%;--col:var(--amber)"></div>
+          </div>
+          <div class="resource-bar-lbl mono">Relative cost: Critical</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon" aria-hidden="true">🔋</div>
+          <div class="resource-lbl mono">Energy</div>
+          <div class="resource-big">~564 MWh</div>
+          <div class="resource-unit">LLaMA 65B training run</div>
+          <p class="resource-detail">Training a large language model can consume as much electricity as hundreds of homes use in a year. GPT-4 is estimated at several times this figure. Energy consumption and carbon footprint are major sustainability concerns for the AI industry.</p>
+          <div class="resource-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" aria-label="Sustainability concern: 76%">
+            <div class="resource-fill" style="--pct:76%;--col:var(--green)"></div>
+          </div>
+          <div class="resource-bar-lbl mono">Sustainability: High concern</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon" aria-hidden="true">📦</div>
+          <div class="resource-lbl mono">Data</div>
+          <div class="resource-big">~15T</div>
+          <div class="resource-unit">tokens (Llama 3 training set)</div>
+          <p class="resource-detail">Datasets span trillions of tokens drawn from web crawls, books, code, and curated sources. Data quality and diversity are often more important than raw volume — better curation consistently outperforms simply training on more data.</p>
+          <div class="resource-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Foundational impact: 85%">
+            <div class="resource-fill" style="--pct:85%;--col:var(--cyan)"></div>
+          </div>
+          <div class="resource-bar-lbl mono">Impact: Foundational</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="resource-icon" aria-hidden="true">⏱</div>
+          <div class="resource-lbl mono">Time</div>
+          <div class="resource-big">~90 days</div>
+          <div class="resource-unit">estimated GPT-4 pretraining run</div>
+          <p class="resource-detail">Even with massive parallelism, training runs span months. A single failed run can cost tens of millions of dollars. Checkpoint strategies, hardware fault tolerance, and real-time run monitoring are critical engineering challenges at this scale.</p>
+          <div class="resource-bar" role="progressbar" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" aria-label="Duration: 68%">
+            <div class="resource-fill" style="--pct:68%;--col:var(--purple)"></div>
+          </div>
+          <div class="resource-bar-lbl mono">Duration: Months</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MODEL COMPARISON ── -->
+  <section class="section" aria-labelledby="models-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">04 — Model Examples</span>
+        <h2 class="section-title" id="models-heading">Frontier Models at a Glance</h2>
+        <p class="section-desc">Comparing publicly known training details of four leading generative AI models.</p>
+      </div>
+
+      <div class="models-grid">
+
+        <article class="model-card" aria-label="GPT-4 by OpenAI">
+          <div class="model-header">
+            <div class="model-logo gpt4-logo">GPT-4</div>
+            <div class="model-org mono">OpenAI</div>
+          </div>
+          <div class="model-stats">
+            <div class="mstat">
+              <span class="mstat-val mono">~$100M+</span>
+              <span class="mstat-key">est. training cost</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">~25,000</span>
+              <span class="mstat-key">A100 GPUs</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">~13T</span>
+              <span class="mstat-key">tokens</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">~90 days</span>
+              <span class="mstat-key">training duration</span>
+            </div>
+          </div>
+          <div class="model-tags">
+            <span class="mtag">Multimodal</span>
+            <span class="mtag">RLHF</span>
+            <span class="mtag">MoE (rumored)</span>
+          </div>
+          <p class="model-note">Released March 2023. Powers ChatGPT Plus and Microsoft Copilot. OpenAI has not publicly disclosed full architectural or training details.</p>
+        </article>
+
+        <article class="model-card" aria-label="Claude 3 by Anthropic">
+          <div class="model-header">
+            <div class="model-logo claude-logo">Claude 3</div>
+            <div class="model-org mono">Anthropic</div>
+          </div>
+          <div class="model-stats">
+            <div class="mstat">
+              <span class="mstat-val mono">~$50–80M</span>
+              <span class="mstat-key">est. training cost</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">10,000+</span>
+              <span class="mstat-key">H100 GPUs (est.)</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">CAI</span>
+              <span class="mstat-key">Constitutional AI</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">200K</span>
+              <span class="mstat-key">context window</span>
+            </div>
+          </div>
+          <div class="model-tags">
+            <span class="mtag">Constitutional AI</span>
+            <span class="mtag">RLHF</span>
+            <span class="mtag">Safety-focused</span>
+          </div>
+          <p class="model-note">Claude 3 Opus (2024) uses Anthropic's Constitutional AI — the model critiques its own outputs against a set of principles, reducing reliance on human labelers for alignment.</p>
+        </article>
+
+        <article class="model-card" aria-label="LLaMA 2 by Meta AI">
+          <div class="model-header">
+            <div class="model-logo llama-logo">LLaMA 2</div>
+            <div class="model-org mono">Meta AI</div>
+          </div>
+          <div class="model-stats">
+            <div class="mstat">
+              <span class="mstat-val mono">~$20M</span>
+              <span class="mstat-key">est. training cost</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">2,048</span>
+              <span class="mstat-key">A100 GPUs (70B)</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">2T</span>
+              <span class="mstat-key">tokens</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">184,320</span>
+              <span class="mstat-key">GPU-hours</span>
+            </div>
+          </div>
+          <div class="model-tags">
+            <span class="mtag">Open-weights</span>
+            <span class="mtag">RLHF</span>
+            <span class="mtag">Published details</span>
+          </div>
+          <p class="model-note">Meta published detailed training costs in their research paper, making LLaMA 2 one of the most transparent frontier models. Its open-weights release enabled widespread research.</p>
+        </article>
+
+        <article class="model-card" aria-label="Gemini Ultra by Google DeepMind">
+          <div class="model-header">
+            <div class="model-logo gemini-logo">Gemini</div>
+            <div class="model-org mono">Google DeepMind</div>
+          </div>
+          <div class="model-stats">
+            <div class="mstat">
+              <span class="mstat-val mono">~$191M</span>
+              <span class="mstat-key">est. training cost</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">TPU v4</span>
+              <span class="mstat-key">accelerator type</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">16,384+</span>
+              <span class="mstat-key">TPU chips (est.)</span>
+            </div>
+            <div class="mstat">
+              <span class="mstat-val mono">Native</span>
+              <span class="mstat-key">multimodal training</span>
+            </div>
+          </div>
+          <div class="model-tags">
+            <span class="mtag">Multimodal</span>
+            <span class="mtag">TPU-native</span>
+            <span class="mtag">RLHF</span>
+          </div>
+          <p class="model-note">Gemini Ultra was trained natively as a multimodal model across text, images, audio, and video — unlike GPT-4. Built on Google's proprietary TPU v4 pods across multiple data centers.</p>
+        </article>
+
+      </div>
+
+      <p class="disclaimer mono">* Cost estimates sourced from public research papers, industry analyst reports, and journalistic investigations. Exact figures are not publicly disclosed by most organizations.</p>
+    </div>
+  </section>
+
+  <!-- ── TRAINING PHASES ── -->
+  <section class="section section-alt" aria-labelledby="phases-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">05 — Deep Dive</span>
+        <h2 class="section-title" id="phases-heading">The Three Training Phases</h2>
+        <p class="section-desc">Understanding what happens at each major phase, why it matters, and what distinguishes one phase from the next.</p>
+      </div>
+
+      <div class="phases-grid">
+
+        <div class="phase-card" data-phase="pretrain">
+          <div class="phase-num mono">Phase 01</div>
+          <h3 class="phase-title">Pre-training</h3>
+          <div class="phase-badge amber-badge">~90% of total cost</div>
+          <p class="phase-body">The model sees trillions of tokens and learns to predict the next token in a sequence. This is unsupervised — no labels, just raw text. Through this process, the model implicitly learns grammar, facts, reasoning patterns, coding syntax, and a surprising breadth of world knowledge.</p>
+          <div class="phase-details">
+            <div class="pd-row">
+              <span class="pd-key mono">Objective</span>
+              <span class="pd-val">Minimize cross-entropy loss on next-token prediction</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-key mono">Architecture</span>
+              <span class="pd-val">Transformer decoder with multi-head attention</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-key mono">Optimizer</span>
+              <span class="pd-val">AdamW with cosine learning rate scheduling</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-key mono">Parallelism</span>
+              <span class="pd-val">Data, tensor, and pipeline parallelism combined</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card" data-phase="sft">
+          <div class="phase-num mono">Phase 02</div>
+          <h3 class="phase-title">Supervised Fine-tuning</h3>
+          <div class="phase-badge cyan-badge">~1% of total cost</div>
+          <p class="phase-body">Human annotators write thousands of (instruction, ideal response) pairs. The base model is then fine-tuned on these examples, transforming a raw "text completion" model into one that understands and follows user instructions with a consistent voice and format.</p>
+          <div class="phase-details">
+            <div class="pd-row">
+              <span class="pd-key mono">Dataset</span>
+              <span class="pd-val">10,000 – 100,000+ human-written examples</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-key mono">Format</span>
+              <span class="pd-val">Prompt → Ideal response pairs</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-key mono">Duration</span>
+              <span class="pd-val">Hours to days of additional compute</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-key mono">Result</span>
+              <span class="pd-val">Consistent instruction-following behavior</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-card" data-phase="rlhf">
+          <div class="phase-num mono">Phase 03</div>
+          <h3 class="phase-title">RLHF &amp; Alignment</h3>
+          <div class="phase-badge green-badge">Weeks of iteration</div>
+          <p class="phase-body">Human raters compare model outputs and rank which is better. A separate "reward model" is trained on these preferences, then used to guide PPO optimization — nudging the LLM toward outputs humans prefer while a KL penalty prevents it from drifting too far from its SFT baseline.</p>
+          <div class="phase-details">
+            <div class="pd-row">
+              <span class="pd-key mono">Step 1</span>
+              <span class="pd-val">Collect human A/B preference rankings</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-key mono">Step 2</span>
+              <span class="pd-val">Train a reward model on the rankings</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-key mono">Step 3</span>
+              <span class="pd-val">Fine-tune LLM via PPO to maximize reward signal</span>
+            </div>
+            <div class="pd-row">
+              <span class="pd-key mono">Alternative</span>
+              <span class="pd-val">Constitutional AI (Anthropic) — model self-critiques</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DESIGN RATIONALE ── -->
+  <section class="section section-alt rationale-section" aria-labelledby="rationale-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">06 — About This Artifact</span>
+        <h2 class="section-title" id="rationale-heading">About This Artifact</h2>
+      </div>
+      <div class="rationale-grid">
+
+        <div class="rationale-block">
+          <h3 class="rat-title">What This Shows</h3>
+          <p>This infographic maps the complete journey from raw internet data to a deployed, aligned language model. It covers six key pipeline stages, four primary resource categories, and compares training details across four leading frontier models: GPT-4, Claude 3, LLaMA 2, and Gemini Ultra.</p>
+        </div>
+
+        <div class="rationale-block">
+          <h3 class="rat-title">Key Insights</h3>
+          <ul class="rat-list">
+            <li>Pre-training dominates cost — over 90% of total compute spend</li>
+            <li>Data quality consistently outperforms raw data volume</li>
+            <li>RLHF transforms a capable base model into a usable product</li>
+            <li>Gemini Ultra has the highest estimated training cost (~$191M)</li>
+            <li>LLaMA 2 is the most transparent with published GPU-hour data</li>
+            <li>Constitutional AI (Claude) reduces dependency on human raters</li>
+          </ul>
+        </div>
+
+        <div class="rationale-block">
+          <h3 class="rat-title">Design Choices</h3>
+          <p>The design uses a dark "technical blueprint" aesthetic appropriate for a data engineering portfolio. Amber highlights compute cost and intensity; cyan represents data flow; green marks alignment stages. The six-step pipeline mirrors the mental model I use daily when designing data pipelines at Kroger — emphasizing transformation, quality gates, and output fidelity at each stage.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FURTHER READING ── -->
+  <section class="section section-reading" aria-labelledby="reading-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">07 — Further Reading</span>
+        <h2 class="section-title" id="reading-heading">Further Reading</h2>
+        <p class="section-desc">Curated resources — papers, videos, courses, and tools — to go deeper on every topic covered in this artifact.</p>
+      </div>
+
+      <div class="reading-grid">
+
+        <div class="reading-group">
+          <div class="reading-group-title">Overview &amp; Introductions</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/" target="_blank" rel="noopener">What Is ChatGPT Doing — and Why Does It Work? (Wolfram)</a>
+              <span class="reading-desc">Stephen Wolfram's celebrated long-form explainer. Builds up from tokens and probabilities to attention and training, with no math prerequisites. Essential first read.</span>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank" rel="noopener">3Blue1Brown: But what is a GPT? (YouTube)</a>
+              <span class="reading-desc">Visual walkthrough of the full transformer and GPT architecture. Part of a series — watch all four videos for a complete picture from tokens to attention to training.</span>
+            </li>
+            <li>
+              <a href="https://ig.ft.com/generative-ai/" target="_blank" rel="noopener">Financial Times: Generative AI Explained Visually</a>
+              <span class="reading-desc">Award-winning interactive explainer from the FT. Scroll-driven animations cover how LLMs generate text, why they hallucinate, and what training involves — accessible to any audience.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Transformer Architecture &amp; Attention</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">The Illustrated Transformer (Jay Alammar)</a>
+              <span class="reading-desc">The most widely referenced visual guide to the Transformer architecture. Diagrams every component — embeddings, positional encoding, multi-head attention, and the encoder-decoder structure — step by step.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need — Original Paper (Vaswani et al., 2017)</a>
+              <span class="reading-desc">The paper that introduced the Transformer. Sections 3 and 4 (model architecture and training) are readable without deep ML background. The architecture described here is the direct ancestor of GPT-4 and Claude.</span>
+            </li>
+            <li>
+              <a href="https://jalammar.github.io/illustrated-gpt2/" target="_blank" rel="noopener">The Illustrated GPT-2 (Jay Alammar)</a>
+              <span class="reading-desc">A follow-up to the Illustrated Transformer focused on the decoder-only GPT architecture used by ChatGPT, Claude, and LLaMA. Shows how masked self-attention works for text generation.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Pre-training &amp; Datasets</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://arxiv.org/abs/2203.15556" target="_blank" rel="noopener">Training Compute-Optimal LLMs (Chinchilla paper, Hoffmann et al., 2022)</a>
+              <span class="reading-desc">DeepMind's landmark paper showing that most LLMs were undertrained on data relative to their size. Introduced the "Chinchilla scaling laws" — optimal training requires ~20 tokens per parameter. Changed how frontier labs scale models.</span>
+            </li>
+            <li>
+              <a href="https://commoncrawl.org/the-data/" target="_blank" rel="noopener">Common Crawl — The Web Dataset</a>
+              <span class="reading-desc">Common Crawl is the nonprofit that provides the petabyte-scale web crawl used in nearly every LLM training run. Their data page describes what they collect, how often, and how to access it.</span>
+            </li>
+            <li>
+              <a href="https://huggingface.co/blog/bloom-megatron-deepspeed" target="_blank" rel="noopener">How We Trained BLOOM — Hugging Face Engineering Blog</a>
+              <span class="reading-desc">A detailed engineering post on training BLOOM (the open-source multilingual LLM). Covers dataset construction, tokenizer design, distributed training setup, and lessons learned — one of the most transparent accounts of a frontier training run.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">RLHF &amp; Alignment</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener">InstructGPT — Training LMs to Follow Instructions (OpenAI, 2022)</a>
+              <span class="reading-desc">The paper that introduced RLHF to the mainstream AI community. Describes how OpenAI trained GPT-3 to follow instructions using human feedback — the foundation for ChatGPT. Clear and well-written, with readable methods section.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener">Constitutional AI — Harmlessness from AI Feedback (Anthropic, 2022)</a>
+              <span class="reading-desc">Anthropic's paper introducing Constitutional AI, the technique used to train Claude. Rather than relying entirely on human raters, the model is given a set of principles and taught to critique and revise its own outputs against them.</span>
+            </li>
+            <li>
+              <a href="https://huyenchip.com/2023/05/02/rlhf.html" target="_blank" rel="noopener">RLHF: Reinforcement Learning from Human Feedback (Chip Huyen)</a>
+              <span class="reading-desc">Chip Huyen's clear, practitioner-focused breakdown of the full RLHF pipeline. Covers reward model training, PPO fine-tuning, KL penalty, and the practical challenges of running RLHF at scale.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Model Research Papers</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://arxiv.org/abs/2307.09288" target="_blank" rel="noopener">Llama 2 — Open Foundation and Fine-Tuned Chat Models (Meta AI, 2023)</a>
+              <span class="reading-desc">The most transparent frontier model paper. Section 2 details training data, compute, and GPU-hours. Section 3 covers the RLHF pipeline with Ghost Attention. Highly recommended for understanding the full LLM training lifecycle with real numbers.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/2312.11805" target="_blank" rel="noopener">Gemini: A Family of Highly Capable Multimodal Models (Google, 2023)</a>
+              <span class="reading-desc">Google DeepMind's technical report on Gemini. Describes training across text, image, audio, and video — natively multimodal from the start. Sections 2 and 3 cover training data and infrastructure on TPU v4 pods.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/2303.08774" target="_blank" rel="noopener">GPT-4 Technical Report (OpenAI, 2023)</a>
+              <span class="reading-desc">OpenAI's deliberately sparse technical report on GPT-4. Notable for what it doesn't disclose (architecture, parameters, data). Still useful for evaluation methodology, safety testing, and understanding why OpenAI chose not to publish details.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener">Language Models are Few-Shot Learners — GPT-3 Paper (Brown et al., 2020)</a>
+              <span class="reading-desc">The GPT-3 paper that changed the field. Introduced few-shot prompting and showed that scale alone (175B parameters) unlocked qualitatively new capabilities. Sections 2–4 cover the model, training, and evaluation.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Compute, Cost &amp; Sustainability</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://openai.com/blog/ai-and-compute" target="_blank" rel="noopener">AI and Compute (OpenAI Blog)</a>
+              <span class="reading-desc">OpenAI's analysis showing that compute used in AI training has doubled every ~3.4 months since 2012 — far faster than Moore's Law. Context for understanding why training frontier models has become so expensive.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/1906.02629" target="_blank" rel="noopener">Energy and Policy Considerations for Deep Learning in NLP (Strubell et al., 2019)</a>
+              <span class="reading-desc">The paper that first quantified the carbon footprint of NLP training runs. Found that training a large transformer with architecture search emits as much CO₂ as five cars over their lifetimes. Sparked the AI sustainability conversation.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REFLECTION ── -->
+  <section class="section" aria-labelledby="reflection-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">08 — Reflection</span>
+        <h2 class="section-title" id="reflection-heading">Reflection</h2>
+      </div>
+      <div class="reflection-card">
+        <p>Before working through this material I thought I had a reasonable understanding of how large language models worked. I use these tools every day and had picked up a surface level picture from articles and casual reading. What I didn't appreciate was how much engineering sits beneath the surface, and how many distinct problems have to be solved in sequence before a model is actually useful.</p>
+
+        <p>The part that genuinely surprised me was the cost split between pre-training and alignment. I knew training was expensive, but I assumed the RLHF and fine-tuning stages were a significant chunk of that cost. Turns out pre-training absorbs over 90% of total compute, and everything that makes the model actually behave well costs comparatively almost nothing. That reframing changed how I think about the economics of AI. The raw capability is expensive. The usefulness is relatively cheap, which is why so many organizations are exploring fine-tuning open-weight models rather than training from scratch.</p>
+
+        <p>The data preprocessing section also hit differently once I connected it to work I do at Kroger. We spend a lot of time on data quality upstream in our pipelines because garbage in the Bronze layer causes compounding problems by the time data reaches Gold. The same principle applies here at a much larger scale. LLaMA 2's paper notes that up to 60% of raw crawled data gets discarded before training. Most people assume AI models are trained on everything the internet has ever produced. The real story is that careful filtering and deduplication matter more than volume.</p>
+
+        <p>Going through Constitutional AI for Claude was the other thing that stuck with me. The idea that a model can be taught to critique its own outputs against a set of principles, reducing the need for human raters at every step, felt like a genuinely different approach rather than just an incremental improvement. It makes the alignment problem feel slightly more tractable than the standard RLHF framing suggests, though I recognize there are open debates about how far that scales.</p>
+
+        <p>Overall this exercise gave me a much more grounded mental model of what generative AI actually is under the hood. I came in thinking of LLMs as sophisticated autocomplete. I leave thinking of them as the compressed output of an extraordinary data engineering and optimization problem, one that has more in common with the pipelines I build professionally than I initially expected.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="artifact-footer">
+    <div class="container">
+      <span class="mono footer-copy">Artifact 3 &mdash; Atharva Deshpande &middot; 2026</span>
+      <a href="../../index.html#artifacts" class="footer-back">&#8592; Back to Portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-triggered reveal animations
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll(
+      '.pipe-step, .resource-card, .model-card, .phase-card, .rationale-block, .concept-card, .reading-group'
+    ).forEach(el => revealObs.observe(el));
+
+    // Animate progress bars when in view
+    const barObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('animated');
+        }
+      });
+    }, { threshold: 0.4 });
+
+    document.querySelectorAll('.resource-fill').forEach(el => barObs.observe(el));
+  </script>
+
+</body>
+</html>
