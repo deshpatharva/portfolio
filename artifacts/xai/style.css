@@ -136,3 +136,93 @@ a:hover { text-decoration: underline; }
 .hstat-div {
   width: 1px; background: var(--border); flex-shrink: 0;
 }
+
+/* ── Sections ── */
+.section { padding: 80px 0; }
+.section-alt {
+  background: rgba(10,26,24,.7);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.section-header { margin-bottom: 48px; }
+.section-tag {
+  display: inline-block;
+  font-size: .75rem; color: var(--teal);
+  letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700; margin-bottom: 10px;
+  letter-spacing: -.01em;
+}
+.section-desc {
+  color: var(--muted); max-width: 580px;
+  font-size: .95rem;
+}
+
+/* ── Section 01: XAI Definition ── */
+.xai-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 768px) {
+  .xai-grid { grid-template-columns: 1fr; }
+}
+.xai-def-card,
+.xai-why-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.xai-def-card { border-top: 3px solid var(--teal); }
+.xai-why-card { border-top: 3px solid var(--muted); }
+.xai-def-card.visible,
+.xai-why-card.visible { opacity: 1; transform: translateY(0); }
+.xai-why-card { transition-delay: .1s; }
+
+.card-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: .72rem; color: var(--teal);
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem; font-weight: 700;
+  margin-bottom: 14px;
+}
+.card-body {
+  color: var(--muted); font-size: .9rem;
+  line-height: 1.75;
+}
+.pillars-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 16px;
+}
+.pillars-list li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: .88rem;
+}
+.pillar-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--teal); flex-shrink: 0;
+  margin-top: 6px;
+}
+.why-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: .88rem;
+}
+.why-item:last-child { border-bottom: none; }
+.why-icon { font-size: 1.2rem; flex-shrink: 0; }
+.why-label { font-weight: 600; margin-bottom: 2px; }
+.why-desc { color: var(--muted); font-size: .83rem; }
