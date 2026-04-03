@@ -271,3 +271,54 @@ a:hover { text-decoration: underline; }
 .challenge-body {
   color: var(--muted); font-size: .875rem; line-height: 1.7;
 }
+
+/* ── Section 03: Validation Metrics ── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  .metrics-grid { grid-template-columns: 1fr; }
+}
+.metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex; gap: 20px; align-items: flex-start;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease, background .2s;
+}
+.metric-card:nth-child(2) { transition-delay: .08s; }
+.metric-card:nth-child(3) { transition-delay: .16s; }
+.metric-card:nth-child(4) { transition-delay: .24s; }
+.metric-card.visible { opacity: 1; transform: translateY(0); }
+.metric-card:hover { background: var(--bg-card2); }
+
+.metric-icon-wrap {
+  width: 44px; height: 44px; border-radius: 10px;
+  background: rgba(0,201,167,.12);
+  border: 1px solid rgba(0,201,167,.25);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.metric-body { flex: 1; }
+.metric-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--teal); margin-bottom: 6px;
+}
+.metric-desc {
+  color: var(--muted); font-size: .875rem; line-height: 1.65;
+}
+.metric-question {
+  margin-top: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: .78rem; color: var(--text);
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 12px;
+}
