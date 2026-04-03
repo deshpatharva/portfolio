@@ -372,3 +372,51 @@ a:hover { text-decoration: underline; }
   color: var(--teal);
   padding: 2px 9px; border-radius: 20px;
 }
+
+/* ── Section 05: Model Comparison ── */
+.compare-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+}
+.compare-table th {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600; font-size: .8rem;
+  text-transform: uppercase; letter-spacing: .06em;
+  padding: 14px 20px;
+  background: var(--bg-card2);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+}
+.compare-table th:first-child { text-align: left; color: var(--text); }
+.compare-table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  vertical-align: middle;
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+.compare-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text);
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table tr:nth-child(even) td { background: rgba(10,26,24,.4); }
+.compare-table td.visible { opacity: 1; }
+
+.cell-yes   { color: var(--teal);  font-size: 1.1rem; }
+.cell-no    { color: var(--muted); font-size: 1.1rem; }
+.cell-part  { color: var(--amber); font-size: .78rem; font-family: 'DM Mono', monospace; }
+
+.model-header-row th:not(:first-child) {
+  color: var(--text);
+  font-size: .82rem;
+}
