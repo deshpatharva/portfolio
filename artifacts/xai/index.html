@@ -162,6 +162,77 @@
     </div>
   </section>
 
+  <!-- ── SECTION 04: SOLUTIONS & TECHNIQUES ── -->
+  <section class="section" aria-labelledby="techniques-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">04 — Solutions &amp; Techniques</span>
+        <h2 class="section-title" id="techniques-heading">5 Industry Approaches</h2>
+        <p class="section-desc">Leading AI organizations are actively developing and deploying these techniques to improve transparency and interpretability.</p>
+      </div>
+
+      <div class="techniques-grid">
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">🔦</span>
+            <span class="technique-name">Attention Visualization</span>
+          </div>
+          <p class="technique-desc">Heatmaps illustrating which input tokens the model focused on when producing each output token. These visualizations offer insight into the model's internal priorities — though attention patterns are not always a faithful proxy for causal reasoning.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">GPT-4</span>
+            <span class="used-tag">Claude</span>
+            <span class="used-tag">LLaMA</span>
+          </div>
+        </div>
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">🧠</span>
+            <span class="technique-name">Chain-of-Thought Prompting</span>
+          </div>
+          <p class="technique-desc">Encouraging models to "think aloud" through step-by-step reasoning before giving a final answer. Users can prompt any modern LLM to explain its process by simply asking — making reasoning accessible without requiring model internals access.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">GPT-4</span>
+            <span class="used-tag">Claude</span>
+            <span class="used-tag">Gemini</span>
+          </div>
+        </div>
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">📐</span>
+            <span class="technique-name">SHAP &amp; LIME</span>
+          </div>
+          <p class="technique-desc">Model-agnostic post-hoc explanation methods. SHAP (SHapley Additive exPlanations) assigns each feature a contribution score using game theory. LIME (Local Interpretable Model-agnostic Explanations) builds a simpler local model that approximates the complex model's behavior around a single prediction.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">Research</span>
+            <span class="used-tag">ML Pipelines</span>
+          </div>
+        </div>
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">🔬</span>
+            <span class="technique-name">Probing Classifiers</span>
+          </div>
+          <p class="technique-desc">Lightweight neural networks trained on top of frozen model representations to test what information the model has encoded internally. If a simple linear probe can predict syntactic structure from hidden states, the model has learned syntax — even without being explicitly taught it.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">Research Labs</span>
+            <span class="used-tag">LLaMA</span>
+          </div>
+        </div>
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">📜</span>
+            <span class="technique-name">Constitutional AI</span>
+          </div>
+          <p class="technique-desc">Anthropic's approach to making model behavior auditable through explicit principles. Claude is trained with a "constitution" — a set of rules the model uses to self-critique its own outputs. The reasoning process is visible and the governing principles are public, making behavior more predictable and accountable.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">Claude</span>
+            <span class="used-tag">Anthropic</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- more sections to be added -->
 
 </body>

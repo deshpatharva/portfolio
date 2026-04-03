@@ -322,3 +322,53 @@ a:hover { text-decoration: underline; }
   border-radius: 6px;
   padding: 8px 12px;
 }
+
+/* ── Section 04: Techniques ── */
+.techniques-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+.technique-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease, background .2s;
+}
+.technique-card:nth-child(2) { transition-delay: .08s; }
+.technique-card:nth-child(3) { transition-delay: .16s; }
+.technique-card:nth-child(4) { transition-delay: .24s; }
+.technique-card:nth-child(5) { transition-delay: .32s; }
+.technique-card.visible { opacity: 1; transform: translateY(0); }
+.technique-card:hover { background: var(--bg-card2); }
+
+.technique-header {
+  display: flex; align-items: center; gap: 14px;
+  margin-bottom: 14px;
+}
+.technique-icon {
+  font-size: 1.8rem; flex-shrink: 0;
+}
+.technique-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem; font-weight: 700;
+}
+.technique-desc {
+  color: var(--muted); font-size: .875rem;
+  line-height: 1.7; margin-bottom: 14px;
+}
+.technique-used-by {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 12px;
+}
+.used-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem;
+  background: rgba(0,201,167,.1);
+  border: 1px solid rgba(0,201,167,.25);
+  color: var(--teal);
+  padding: 2px 9px; border-radius: 20px;
+}
