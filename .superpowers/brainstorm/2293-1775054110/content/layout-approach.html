@@ -1,0 +1,42 @@
+<h2>How should the XAI artifact be structured?</h2>
+<p class="subtitle">Three approaches to organizing the content — Explainability Challenges, Validation Metrics, and Current Techniques.</p>
+
+<div class="options">
+
+  <div class="option" data-choice="linear-sections" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Linear Sections (like Artifact 3)</h3>
+      <p>Numbered sections top-to-bottom: Hero stats → What is XAI → Challenges (cards) → Validation Metrics (table/cards) → Current Solutions → Explanatory Doc. Clean narrative flow. Familiar to anyone who's seen Artifact 3.</p>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><h4>Pros</h4><ul><li>Consistent with existing artifacts</li><li>Easy to scan/navigate</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Less visually differentiated from Artifact 3</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="challenge-solution" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Challenge → Solution Pairing</h3>
+      <p>Each challenge is paired side-by-side with its solution technique. E.g., "Black Box Opacity" ↔ "Attention Visualization". Creates a direct visual mapping between problems and answers. A unique layout not used in the other artifacts.</p>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><h4>Pros</h4><ul><li>Distinctive, memorable structure</li><li>Shows cause-effect clearly</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Validation metrics section is harder to fit naturally</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="four-pillars" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Four-Pillar Framework</h3>
+      <p>Opens with a central XAI framework diagram showing 4 pillars (Transparency, Interpretability, Accountability, Trust). Each pillar expands into its own section below. Validation metrics and techniques live under the relevant pillar.</p>
+      <div class="pros-cons" style="margin-top:10px;">
+        <div class="pros"><h4>Pros</h4><ul><li>Cohesive conceptual framework</li><li>Feels more like an original analysis</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>More complex to implement; requires a central diagram</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+</div>
