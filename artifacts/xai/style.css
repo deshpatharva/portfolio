@@ -226,3 +226,48 @@ a:hover { text-decoration: underline; }
 .why-icon { font-size: 1.2rem; flex-shrink: 0; }
 .why-label { font-weight: 600; margin-bottom: 2px; }
 .why-desc { color: var(--muted); font-size: .83rem; }
+
+/* ── Section 02: Challenges ── */
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .challenges-grid { grid-template-columns: 1fr; }
+}
+.challenge-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease, background .2s;
+}
+.challenge-card:nth-child(2) { transition-delay: .1s; }
+.challenge-card:nth-child(3) { transition-delay: .2s; }
+.challenge-card.visible { opacity: 1; transform: translateY(0); }
+.challenge-card:hover { background: var(--bg-card2); }
+
+.challenge-card[data-accent="red"]    { border-left: 3px solid var(--red); }
+.challenge-card[data-accent="amber"]  { border-left: 3px solid var(--amber); }
+.challenge-card[data-accent="violet"] { border-left: 3px solid var(--violet); }
+
+.challenge-num {
+  font-family: 'DM Mono', monospace;
+  font-size: .7rem; color: var(--muted);
+  letter-spacing: .1em; margin-bottom: 12px;
+}
+.challenge-icon { font-size: 1.8rem; margin-bottom: 12px; }
+.challenge-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem; font-weight: 700;
+  margin-bottom: 10px;
+}
+.challenge-card[data-accent="red"]    .challenge-title { color: var(--red); }
+.challenge-card[data-accent="amber"]  .challenge-title { color: var(--amber); }
+.challenge-card[data-accent="violet"] .challenge-title { color: var(--violet); }
+.challenge-body {
+  color: var(--muted); font-size: .875rem; line-height: 1.7;
+}
