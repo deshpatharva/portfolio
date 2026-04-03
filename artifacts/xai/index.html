@@ -295,7 +295,54 @@
     </div>
   </section>
 
-  <!-- more sections to be added -->
+  <!-- ── SECTION 06: EXPLANATORY DOCUMENT ── -->
+  <section class="section" aria-labelledby="explainer-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">06 — Explanatory Document</span>
+        <h2 class="section-title" id="explainer-heading">Summary &amp; Design Rationale</h2>
+      </div>
+
+      <div class="explainer-card">
+        <p>Generative AI models — particularly large language models like GPT-4, Claude, Gemini, and LLaMA — are powerful yet fundamentally opaque. Their decision-making is distributed across billions of parameters through non-linear interactions that resist straightforward interpretation. This artifact maps the three core challenges standing between AI systems and genuine transparency: the <strong>black box opacity</strong> of distributed model internals, the <strong>post-hoc explanation gap</strong> where after-the-fact rationales may not reflect true reasoning, and <strong>data quality and bias</strong> embedded in training sets. Understanding these challenges is the first step toward holding AI systems accountable.</p>
+        <p>Validation metrics — <strong>faithfulness, human-groundedness, robustness, and completeness</strong> — give us concrete ways to evaluate whether an explanation is trustworthy, not just plausible. The five solution techniques shown here represent the industry's active response: attention visualization and probing classifiers expose model internals; SHAP and LIME quantify feature contributions; chain-of-thought prompting makes reasoning externally auditable; and Anthropic's Constitutional AI embeds explicit, public principles directly into training. The <strong>teal color identity</strong> was chosen to evoke clinical clarity and diagnostic precision — qualities that should define how we approach AI accountability. The model comparison table grounds the concepts in the real landscape of tools available today.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="artifact-footer">
+    <div class="container">
+      <span class="mono footer-copy">Artifact 4 &mdash; Atharva Deshpande &middot; 2026</span>
+      <a href="../../index.html#artifacts" class="footer-back">&#8592; Back to Portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll-triggered reveal for all animated elements
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll(
+      '.xai-def-card, .xai-why-card, .challenge-card, .metric-card, .technique-card, .explainer-card'
+    ).forEach(el => revealObs.observe(el));
+
+    // Table row reveal — each cell individually for a left-to-right sweep effect
+    const tableObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const cells = e.target.querySelectorAll('td');
+          cells.forEach((cell, i) => {
+            setTimeout(() => cell.classList.add('visible'), i * 60);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.compare-table tbody tr').forEach(row => tableObs.observe(row));
+  </script>
 
 </body>
 </html>

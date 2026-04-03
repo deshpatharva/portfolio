@@ -420,3 +420,52 @@ a:hover { text-decoration: underline; }
   color: var(--text);
   font-size: .82rem;
 }
+
+/* ── Section 06: Explanatory Document ── */
+.explainer-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 40px;
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.explainer-card.visible { opacity: 1; transform: translateY(0); }
+.explainer-card p {
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.85;
+  margin-bottom: 20px;
+}
+.explainer-card p:last-child { margin-bottom: 0; }
+.explainer-card strong { color: var(--text); }
+
+/* ── Footer ── */
+.artifact-footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+}
+.artifact-footer .container {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: .78rem; color: var(--muted);
+}
+.footer-back {
+  font-size: .85rem; color: var(--muted);
+  transition: color .2s;
+}
+.footer-back:hover { color: var(--text); text-decoration: none; }
+
+/* ── Mobile tweaks ── */
+@media (max-width: 640px) {
+  .hero-stats { width: 100%; }
+  .hstat { flex: 1; padding: 14px 12px; }
+  .topbar-title { display: none; }
+}
