@@ -581,9 +581,9 @@ a:hover { text-decoration: underline; }
 .reading-group-title {
   font-family: 'Syne', sans-serif;
   font-size: .88rem; font-weight: 700;
-  color: var(--teal); margin-bottom: 16px;
+  color: var(--text); margin-bottom: 16px;
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--teal);
   letter-spacing: .01em;
 }
 .reading-list {

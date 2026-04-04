@@ -85,7 +85,7 @@
   </section>
 
   <!-- ── KEY TERMS & CONCEPTS ── -->
-  <section class="section" aria-labelledby="concepts-heading">
+  <section class="section section-alt" aria-labelledby="concepts-heading">
     <div class="container">
       <div class="section-header">
         <span class="section-tag mono">Key Terms &amp; Concepts</span>
@@ -491,6 +491,8 @@
   </footer>
 
   <script>
+    const REVEAL_SELECTOR = '.xai-def-card, .xai-why-card, .concept-card, .challenge-card, .metric-card, .technique-card, .reading-group, .explainer-card';
+
     // Scroll-triggered reveal for all animated elements
     const revealObs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -498,9 +500,14 @@
       });
     }, { threshold: 0.08 });
 
-    document.querySelectorAll(
-      '.xai-def-card, .xai-why-card, .concept-card, .challenge-card, .metric-card, .technique-card, .reading-group, .explainer-card'
-    ).forEach(el => revealObs.observe(el));
+    document.querySelectorAll(REVEAL_SELECTOR).forEach(el => revealObs.observe(el));
+
+    // Immediately reveal any elements already in the viewport on page load
+    document.querySelectorAll(REVEAL_SELECTOR).forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
+        el.classList.add('visible');
+      }
+    });
 
     // Table row reveal — each cell individually for a left-to-right sweep effect
     const tableObs = new IntersectionObserver((entries) => {
