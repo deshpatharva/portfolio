@@ -67,6 +67,20 @@ a:hover { text-decoration: underline; }
   padding: 2px 10px; border-radius: 20px;
   white-space: nowrap;
 }
+.artifact-nav {
+  display: flex; align-items: center; gap: 6px;
+}
+.artifact-nav-arrow {
+  color: var(--muted); font-size: .85rem;
+  padding: 2px 6px; border-radius: 6px;
+  transition: color .2s, background .2s;
+  text-decoration: none; line-height: 1;
+}
+.artifact-nav-arrow:hover {
+  color: var(--teal);
+  background: rgba(0,201,167,.1);
+  text-decoration: none;
+}
 
 /* ── Hero ── */
 .hero {

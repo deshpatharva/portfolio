@@ -15,7 +15,10 @@
   <nav class="topbar">
     <a href="../../index.html#artifacts" class="back-link">&#8592; Portfolio</a>
     <span class="topbar-title">Explainable AI &amp; Model Transparency</span>
-    <span class="topbar-badge">Artifact 4</span>
+    <div class="artifact-nav">
+      <a href="../llm-training/index.html" class="artifact-nav-arrow" title="Artifact 3: How LLMs Are Built">&#8592;</a>
+      <span class="topbar-badge">Artifact 4</span>
+    </div>
   </nav>
 
   <!-- ── HERO ── -->
@@ -52,43 +55,11 @@
     </div>
   </header>
 
-  <!-- ── SECTION 01: WHAT IS XAI ── -->
-  <section class="section section-alt" aria-labelledby="xai-heading">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag mono">01 — What is XAI?</span>
-        <h2 class="section-title" id="xai-heading">Explainable AI &amp; Why It Matters</h2>
-        <p class="section-desc">XAI is the set of methods and techniques that make AI decisions understandable to humans — covering transparency, interpretability, and accountability.</p>
-      </div>
-
-      <div class="xai-grid">
-        <div class="xai-def-card">
-          <div class="card-eyebrow">Definition</div>
-          <div class="card-title">What is Explainable AI?</div>
-          <p class="card-body">Explainable AI (XAI) refers to methods and processes that allow humans to understand and trust the outputs of machine learning models. Unlike traditional software where logic is explicit, large language models distribute decision-making across billions of parameters — making it nearly impossible to trace any single output to a clear cause.</p>
-          <ul class="pillars-list">
-            <li><span class="pillar-dot"></span><div><strong>Transparency</strong> — the model's architecture and training process are open to inspection</div></li>
-            <li><span class="pillar-dot"></span><div><strong>Interpretability</strong> — humans can understand what factors drove a specific decision</div></li>
-            <li><span class="pillar-dot"></span><div><strong>Accountability</strong> — clear ownership when an AI system causes harm or produces errors</div></li>
-          </ul>
-        </div>
-        <div class="xai-why-card">
-          <div class="card-eyebrow">Why It Matters</div>
-          <div class="card-title">Stakes &amp; Drivers</div>
-          <div class="why-item"><span class="why-icon">⚖️</span><div><div class="why-label">Regulation</div><div class="why-desc">EU AI Act mandates explainability for high-risk AI systems</div></div></div>
-          <div class="why-item"><span class="why-icon">🏥</span><div><div class="why-label">Safety</div><div class="why-desc">Medical, legal, and financial AI require auditable decisions</div></div></div>
-          <div class="why-item"><span class="why-icon">⚠️</span><div><div class="why-label">Bias Detection</div><div class="why-desc">Explanations surface when models discriminate unfairly</div></div></div>
-          <div class="why-item"><span class="why-icon">🤝</span><div><div class="why-label">User Trust</div><div class="why-desc">72% of users distrust AI — explainability bridges the gap</div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── KEY TERMS & CONCEPTS ── -->
+  <!-- ── SECTION 01: KEY TERMS ── -->
   <section class="section section-alt" aria-labelledby="concepts-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag mono">Key Terms &amp; Concepts</span>
+        <span class="section-tag mono">01 — Key Terms &amp; Concepts</span>
         <h2 class="section-title" id="concepts-heading">Jargon Explained</h2>
         <p class="section-desc">Eight foundational terms used throughout this artifact — from model architecture to explainability methods and regulation.</p>
       </div>
@@ -170,11 +141,43 @@
     </div>
   </section>
 
-  <!-- ── SECTION 02: CHALLENGES ── -->
+  <!-- ── SECTION 02: WHAT IS XAI ── -->
+  <section class="section" aria-labelledby="xai-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">02 — What is XAI?</span>
+        <h2 class="section-title" id="xai-heading">Explainable AI &amp; Why It Matters</h2>
+        <p class="section-desc">XAI is the set of methods and techniques that make AI decisions understandable to humans — covering transparency, interpretability, and accountability.</p>
+      </div>
+
+      <div class="xai-grid">
+        <div class="xai-def-card">
+          <div class="card-eyebrow">Definition</div>
+          <div class="card-title">What is Explainable AI?</div>
+          <p class="card-body">Explainable AI (XAI) refers to methods and processes that allow humans to understand and trust the outputs of machine learning models. Unlike traditional software where logic is explicit, large language models distribute decision-making across billions of parameters — making it nearly impossible to trace any single output to a clear cause.</p>
+          <ul class="pillars-list">
+            <li><span class="pillar-dot"></span><div><strong>Transparency</strong> — the model's architecture and training process are open to inspection</div></li>
+            <li><span class="pillar-dot"></span><div><strong>Interpretability</strong> — humans can understand what factors drove a specific decision</div></li>
+            <li><span class="pillar-dot"></span><div><strong>Accountability</strong> — clear ownership when an AI system causes harm or produces errors</div></li>
+          </ul>
+        </div>
+        <div class="xai-why-card">
+          <div class="card-eyebrow">Why It Matters</div>
+          <div class="card-title">Stakes &amp; Drivers</div>
+          <div class="why-item"><span class="why-icon">⚖️</span><div><div class="why-label">Regulation</div><div class="why-desc">EU AI Act mandates explainability for high-risk AI systems</div></div></div>
+          <div class="why-item"><span class="why-icon">🏥</span><div><div class="why-label">Safety</div><div class="why-desc">Medical, legal, and financial AI require auditable decisions</div></div></div>
+          <div class="why-item"><span class="why-icon">⚠️</span><div><div class="why-label">Bias Detection</div><div class="why-desc">Explanations surface when models discriminate unfairly</div></div></div>
+          <div class="why-item"><span class="why-icon">🤝</span><div><div class="why-label">User Trust</div><div class="why-desc">72% of users distrust AI — explainability bridges the gap</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 03: CHALLENGES ── -->
   <section class="section" aria-labelledby="challenges-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag mono">02 — Challenges</span>
+        <span class="section-tag mono">03 — Challenges</span>
         <h2 class="section-title" id="challenges-heading">3 Core Obstacles to Explainability</h2>
         <p class="section-desc">Generative AI models create fundamental challenges that resist straightforward interpretation — and are unlikely to vanish as models scale.</p>
       </div>
@@ -206,7 +209,7 @@
   <section class="section section-alt" aria-labelledby="metrics-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag mono">03 — Validation &amp; Metrics</span>
+        <span class="section-tag mono">04 — Validation &amp; Metrics</span>
         <h2 class="section-title" id="metrics-heading">How We Measure Trust &amp; Reliability</h2>
         <p class="section-desc">Performance metrics give AI systems accountability. These four properties define what a trustworthy explanation actually looks like.</p>
       </div>
@@ -252,7 +255,7 @@
   <section class="section" aria-labelledby="techniques-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag mono">04 — Solutions &amp; Techniques</span>
+        <span class="section-tag mono">05 — Solutions &amp; Techniques</span>
         <h2 class="section-title" id="techniques-heading">5 Industry Approaches</h2>
         <p class="section-desc">Leading AI organizations are actively developing and deploying these techniques to improve transparency and interpretability.</p>
       </div>
@@ -323,7 +326,7 @@
   <section class="section section-alt" aria-labelledby="compare-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag mono">05 — Model Comparison</span>
+        <span class="section-tag mono">Model Comparison</span>
         <h2 class="section-title" id="compare-heading">GPT-4 &middot; Claude &middot; Gemini &middot; LLaMA</h2>
         <p class="section-desc">How the four leading generative AI models approach explainability, transparency, and open access.</p>
       </div>
@@ -385,7 +388,7 @@
   <section class="section section-reading" aria-labelledby="reading-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag mono">Further Reading</span>
+        <span class="section-tag mono">06 — Further Reading</span>
         <h2 class="section-title" id="reading-heading">Go Deeper</h2>
         <p class="section-desc">Curated papers, books, tools, and policy documents to explore every topic in this artifact further.</p>
       </div>
@@ -472,8 +475,8 @@
   <section class="section" aria-labelledby="explainer-heading">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag mono">06 — Explanatory Document</span>
-        <h2 class="section-title" id="explainer-heading">Summary &amp; Design Rationale</h2>
+        <span class="section-tag mono">Reflection</span>
+        <h2 class="section-title" id="explainer-heading">Reflection</h2>
       </div>
 
       <div class="explainer-card">
