@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explainable AI &amp; Model Transparency | Atharva Deshpande</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── TOPBAR ── -->
+  <nav class="topbar">
+    <a href="../../index.html#artifacts" class="back-link">&#8592; Portfolio</a>
+    <span class="topbar-title">Explainable AI &amp; Model Transparency</span>
+    <div class="artifact-nav">
+      <a href="../llm-training/index.html" class="artifact-nav-arrow" title="Artifact 3: How LLMs Are Built">&#8592;</a>
+      <span class="topbar-badge">Artifact 4</span>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        <span class="mono">Generative AI &bull; Explainability &amp; Trust</span>
+      </div>
+      <h1 class="hero-title">Opening the<br /><span class="accent">Black Box</span></h1>
+      <p class="hero-sub">Why AI transparency matters — challenges, validation metrics, and the techniques leading organizations use to make AI decisions understandable.</p>
+
+      <div class="hero-stats" role="list" aria-label="Key statistics">
+        <div class="hstat" role="listitem">
+          <div class="hstat-val">72%</div>
+          <div class="hstat-label">Users don't trust AI</div>
+        </div>
+        <div class="hstat-div" aria-hidden="true"></div>
+        <div class="hstat" role="listitem">
+          <div class="hstat-val">3</div>
+          <div class="hstat-label">Core challenges</div>
+        </div>
+        <div class="hstat-div" aria-hidden="true"></div>
+        <div class="hstat" role="listitem">
+          <div class="hstat-val">5</div>
+          <div class="hstat-label">Solution techniques</div>
+        </div>
+        <div class="hstat-div" aria-hidden="true"></div>
+        <div class="hstat" role="listitem">
+          <div class="hstat-val">4</div>
+          <div class="hstat-label">LLMs compared</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── SECTION 01: KEY TERMS ── -->
+  <section class="section section-alt" aria-labelledby="concepts-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">01 — Key Terms &amp; Concepts</span>
+        <h2 class="section-title" id="concepts-heading">Jargon Explained</h2>
+        <p class="section-desc">Eight foundational terms used throughout this artifact — from model architecture to explainability methods and regulation.</p>
+      </div>
+
+      <div class="concepts-grid">
+
+        <div class="concept-card" data-cat="core">
+          <div class="concept-tag">Core Concept</div>
+          <div class="concept-name">XAI</div>
+          <div class="concept-short">Explainable Artificial Intelligence</div>
+          <p class="concept-body">The field of methods and processes that make AI decisions understandable to humans. XAI sits at the intersection of machine learning, human-computer interaction, and ethics — seeking to bridge the gap between model capability and human trust.</p>
+        </div>
+
+        <div class="concept-card" data-cat="model">
+          <div class="concept-tag">Model Type</div>
+          <div class="concept-name">LLM</div>
+          <div class="concept-short">Large Language Model</div>
+          <p class="concept-body">A neural network with billions of parameters trained on vast text corpora to predict and generate human language. Models like <em>GPT-4</em>, <em>Claude</em>, <em>Gemini</em>, and <em>LLaMA</em> are LLMs. Their scale is both their strength and the root of explainability challenges.</p>
+        </div>
+
+        <div class="concept-card" data-cat="challenge">
+          <div class="concept-tag">Challenge</div>
+          <div class="concept-name">Black Box</div>
+          <div class="concept-short">Opaque decision system</div>
+          <p class="concept-body">A model or system where the internal logic is not visible, interpretable, or traceable. Deep neural networks are black boxes by nature — inputs and outputs are observable but the billions of intermediate calculations remain opaque even to their creators.</p>
+        </div>
+
+        <div class="concept-card" data-cat="method">
+          <div class="concept-tag">Method</div>
+          <div class="concept-name">Post-hoc</div>
+          <div class="concept-short">After-the-fact explanation</div>
+          <p class="concept-body">An explanation generated <em>after</em> a model has produced its output, rather than as part of the decision process itself. Most XAI techniques are post-hoc. The core concern: do they faithfully reflect what the model computed, or just produce a plausible-sounding rationale?</p>
+        </div>
+
+        <div class="concept-card" data-cat="method">
+          <div class="concept-tag">Technique</div>
+          <div class="concept-name">SHAP</div>
+          <div class="concept-short">SHapley Additive exPlanations</div>
+          <p class="concept-body">A method rooted in cooperative game theory that assigns each input feature a contribution score for a specific prediction. SHAP values are <em>additive</em> (they sum to the model output) and <em>consistent</em> — more important features always receive higher scores. Widely used in tabular ML and increasingly in NLP.</p>
+        </div>
+
+        <div class="concept-card" data-cat="method">
+          <div class="concept-tag">Technique</div>
+          <div class="concept-name">LIME</div>
+          <div class="concept-short">Local Interpretable Model-agnostic Explanations</div>
+          <p class="concept-body">Explains a single prediction by fitting a simple, interpretable model (e.g. linear regression) to the complex model's behavior in the neighborhood of that input. <em>Local</em> means it only explains one prediction at a time. <em>Model-agnostic</em> means it works with any black-box model.</p>
+        </div>
+
+        <div class="concept-card" data-cat="method">
+          <div class="concept-tag">Technique</div>
+          <div class="concept-name">CoT</div>
+          <div class="concept-short">Chain-of-Thought Prompting</div>
+          <p class="concept-body">A prompting strategy that instructs an LLM to reason step-by-step before producing a final answer. The intermediate reasoning steps are externally visible, making the model's logic auditable without accessing model internals. Introduced by Wei et al. (2022) at Google Brain.</p>
+        </div>
+
+        <div class="concept-card" data-cat="regulation">
+          <div class="concept-tag">Regulation</div>
+          <div class="concept-name">EU AI Act</div>
+          <div class="concept-short">European AI Regulation (2024)</div>
+          <p class="concept-body">The world's first comprehensive AI law, passed by the European Union in 2024. It categorizes AI systems by risk and mandates <em>transparency and explainability</em> for high-risk applications (medical diagnosis, credit scoring, recruitment, law enforcement). Non-compliance carries fines up to €35M or 7% of global revenue.</p>
+        </div>
+
+      </div>
+
+      <!-- Abbreviations quick-reference -->
+      <div class="abbr-section">
+        <div class="abbr-heading mono">ABBREVIATIONS USED IN THIS ARTIFACT</div>
+        <div class="abbr-grid">
+          <div class="abbr-item"><span class="abbr-term">XAI</span><span class="abbr-full">Explainable AI</span></div>
+          <div class="abbr-item"><span class="abbr-term">LLM</span><span class="abbr-full">Large Language Model</span></div>
+          <div class="abbr-item"><span class="abbr-term">SHAP</span><span class="abbr-full">SHapley Additive exPlanations</span></div>
+          <div class="abbr-item"><span class="abbr-term">LIME</span><span class="abbr-full">Local Interpretable Model-agnostic Explanations</span></div>
+          <div class="abbr-item"><span class="abbr-term">CoT</span><span class="abbr-full">Chain-of-Thought</span></div>
+          <div class="abbr-item"><span class="abbr-term">RLHF</span><span class="abbr-full">Reinforcement Learning from Human Feedback</span></div>
+          <div class="abbr-item"><span class="abbr-term">CAI</span><span class="abbr-full">Constitutional AI (Anthropic)</span></div>
+          <div class="abbr-item"><span class="abbr-term">EU AI Act</span><span class="abbr-full">European Union Artificial Intelligence Act</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 02: WHAT IS XAI ── -->
+  <section class="section" aria-labelledby="xai-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">02 — What is XAI?</span>
+        <h2 class="section-title" id="xai-heading">Explainable AI &amp; Why It Matters</h2>
+        <p class="section-desc">XAI is the set of methods and techniques that make AI decisions understandable to humans — covering transparency, interpretability, and accountability.</p>
+      </div>
+
+      <div class="xai-grid">
+        <div class="xai-def-card">
+          <div class="card-eyebrow">Definition</div>
+          <div class="card-title">What is Explainable AI?</div>
+          <p class="card-body">Explainable AI (XAI) refers to methods and processes that allow humans to understand and trust the outputs of machine learning models. Unlike traditional software where logic is explicit, large language models distribute decision-making across billions of parameters — making it nearly impossible to trace any single output to a clear cause.</p>
+          <ul class="pillars-list">
+            <li><span class="pillar-dot"></span><div><strong>Transparency</strong> — the model's architecture and training process are open to inspection</div></li>
+            <li><span class="pillar-dot"></span><div><strong>Interpretability</strong> — humans can understand what factors drove a specific decision</div></li>
+            <li><span class="pillar-dot"></span><div><strong>Accountability</strong> — clear ownership when an AI system causes harm or produces errors</div></li>
+          </ul>
+        </div>
+        <div class="xai-why-card">
+          <div class="card-eyebrow">Why It Matters</div>
+          <div class="card-title">Stakes &amp; Drivers</div>
+          <div class="why-item"><span class="why-icon">⚖️</span><div><div class="why-label">Regulation</div><div class="why-desc">EU AI Act mandates explainability for high-risk AI systems</div></div></div>
+          <div class="why-item"><span class="why-icon">🏥</span><div><div class="why-label">Safety</div><div class="why-desc">Medical, legal, and financial AI require auditable decisions</div></div></div>
+          <div class="why-item"><span class="why-icon">⚠️</span><div><div class="why-label">Bias Detection</div><div class="why-desc">Explanations surface when models discriminate unfairly</div></div></div>
+          <div class="why-item"><span class="why-icon">🤝</span><div><div class="why-label">User Trust</div><div class="why-desc">72% of users distrust AI — explainability bridges the gap</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 03: CHALLENGES ── -->
+  <section class="section" aria-labelledby="challenges-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">03 — Challenges</span>
+        <h2 class="section-title" id="challenges-heading">3 Core Obstacles to Explainability</h2>
+        <p class="section-desc">Generative AI models create fundamental challenges that resist straightforward interpretation — and are unlikely to vanish as models scale.</p>
+      </div>
+
+      <div class="challenges-grid">
+        <div class="challenge-card" data-accent="red">
+          <div class="challenge-num">01 / 03</div>
+          <div class="challenge-icon">⬛</div>
+          <div class="challenge-title">Black Box Opacity</div>
+          <p class="challenge-body">Decisions emerge from complex, non-linear interactions across millions or billions of parameters. No single component fully explains the output. The distributed and dynamic internal structure resists straightforward interpretation — even from the engineers who built the system.</p>
+        </div>
+        <div class="challenge-card" data-accent="amber">
+          <div class="challenge-num">02 / 03</div>
+          <div class="challenge-icon">🔍</div>
+          <div class="challenge-title">Post-Hoc Explanation Gap</div>
+          <p class="challenge-body">Explanations are typically generated after the decision, not during it. These post-hoc explanations may not accurately reflect the model's true internal reasoning. This gap can undermine trust — a challenge that persists even as models grow more sophisticated and explanation methods improve.</p>
+        </div>
+        <div class="challenge-card" data-accent="violet">
+          <div class="challenge-num">03 / 03</div>
+          <div class="challenge-icon">📊</div>
+          <div class="challenge-title">Data Quality &amp; Bias</div>
+          <p class="challenge-body">Models trained on vast datasets inherit the imperfections within those datasets — including biases, noise, and underrepresentation. Ensuring data quality and representativeness remains crucial, as biased outputs will continue to be a significant concern regardless of model architecture advances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 03: VALIDATION & METRICS ── -->
+  <section class="section section-alt" aria-labelledby="metrics-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">04 — Validation &amp; Metrics</span>
+        <h2 class="section-title" id="metrics-heading">How We Measure Trust &amp; Reliability</h2>
+        <p class="section-desc">Performance metrics give AI systems accountability. These four properties define what a trustworthy explanation actually looks like.</p>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-icon-wrap">🎯</div>
+          <div class="metric-body">
+            <div class="metric-name">Faithfulness</div>
+            <p class="metric-desc">The explanation must accurately reflect the model's actual decision process — not a plausible-sounding but fictional rationale.</p>
+            <div class="metric-question">Does the explanation match what the model actually computed?</div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon-wrap">🧑‍💼</div>
+          <div class="metric-body">
+            <div class="metric-name">Human-Groundedness</div>
+            <p class="metric-desc">Real users — not just researchers — should be able to understand the explanation and use it to verify or challenge the model's output.</p>
+            <div class="metric-question">Can a non-expert understand and act on this explanation?</div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon-wrap">🔁</div>
+          <div class="metric-body">
+            <div class="metric-name">Robustness</div>
+            <p class="metric-desc">Similar inputs should produce similar explanations. An explanation that changes drastically with minor input variations cannot be trusted.</p>
+            <div class="metric-question">Are results consistent across similar inputs and contexts?</div>
+          </div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon-wrap">📋</div>
+          <div class="metric-body">
+            <div class="metric-name">Completeness</div>
+            <p class="metric-desc">The explanation should cover all factors that materially influenced the output — not just the most obvious or convenient ones.</p>
+            <div class="metric-question">Does it account for all relevant contributing factors?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 04: SOLUTIONS & TECHNIQUES ── -->
+  <section class="section" aria-labelledby="techniques-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">05 — Solutions &amp; Techniques</span>
+        <h2 class="section-title" id="techniques-heading">5 Industry Approaches</h2>
+        <p class="section-desc">Leading AI organizations are actively developing and deploying these techniques to improve transparency and interpretability.</p>
+      </div>
+
+      <div class="techniques-grid">
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">🔦</span>
+            <span class="technique-name">Attention Visualization</span>
+          </div>
+          <p class="technique-desc">Heatmaps illustrating which input tokens the model focused on when producing each output token. These visualizations offer insight into the model's internal priorities — though attention patterns are not always a faithful proxy for causal reasoning.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">GPT-4</span>
+            <span class="used-tag">Claude</span>
+            <span class="used-tag">LLaMA</span>
+          </div>
+        </div>
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">🧠</span>
+            <span class="technique-name">Chain-of-Thought Prompting</span>
+          </div>
+          <p class="technique-desc">Encouraging models to "think aloud" through step-by-step reasoning before giving a final answer. Users can prompt any modern LLM to explain its process by simply asking — making reasoning accessible without requiring model internals access.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">GPT-4</span>
+            <span class="used-tag">Claude</span>
+            <span class="used-tag">Gemini</span>
+          </div>
+        </div>
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">📐</span>
+            <span class="technique-name">SHAP &amp; LIME</span>
+          </div>
+          <p class="technique-desc">Model-agnostic post-hoc explanation methods. SHAP (SHapley Additive exPlanations) assigns each feature a contribution score using game theory. LIME (Local Interpretable Model-agnostic Explanations) builds a simpler local model that approximates the complex model's behavior around a single prediction.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">Research</span>
+            <span class="used-tag">ML Pipelines</span>
+          </div>
+        </div>
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">🔬</span>
+            <span class="technique-name">Probing Classifiers</span>
+          </div>
+          <p class="technique-desc">Lightweight neural networks trained on top of frozen model representations to test what information the model has encoded internally. If a simple linear probe can predict syntactic structure from hidden states, the model has learned syntax — even without being explicitly taught it.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">Research Labs</span>
+            <span class="used-tag">LLaMA</span>
+          </div>
+        </div>
+        <div class="technique-card">
+          <div class="technique-header">
+            <span class="technique-icon">📜</span>
+            <span class="technique-name">Constitutional AI</span>
+          </div>
+          <p class="technique-desc">Anthropic's approach to making model behavior auditable through explicit principles. Claude is trained with a "constitution" — a set of rules the model uses to self-critique its own outputs. The reasoning process is visible and the governing principles are public, making behavior more predictable and accountable.</p>
+          <div class="technique-used-by">
+            <span class="used-tag">Claude</span>
+            <span class="used-tag">Anthropic</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 05: MODEL COMPARISON ── -->
+  <section class="section section-alt" aria-labelledby="compare-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">06 — Model Comparison</span>
+        <h2 class="section-title" id="compare-heading">GPT-4 &middot; Claude &middot; Gemini &middot; LLaMA</h2>
+        <p class="section-desc">How the four leading generative AI models approach explainability, transparency, and open access.</p>
+      </div>
+
+      <div class="compare-wrap">
+        <table class="compare-table" role="table" aria-label="Model explainability comparison">
+          <thead>
+            <tr class="model-header-row">
+              <th scope="col">Feature</th>
+              <th scope="col">GPT-4</th>
+              <th scope="col">Claude</th>
+              <th scope="col">Gemini</th>
+              <th scope="col">LLaMA 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Chain-of-Thought</td>
+              <td class="cell-yes">✓</td>
+              <td class="cell-yes">✓</td>
+              <td class="cell-yes">✓</td>
+              <td class="cell-part">Partial</td>
+            </tr>
+            <tr>
+              <td>Open Weights</td>
+              <td class="cell-no">✗</td>
+              <td class="cell-no">✗</td>
+              <td class="cell-no">✗</td>
+              <td class="cell-yes">✓</td>
+            </tr>
+            <tr>
+              <td>Constitutional AI</td>
+              <td class="cell-no">✗</td>
+              <td class="cell-yes">✓</td>
+              <td class="cell-no">✗</td>
+              <td class="cell-no">✗</td>
+            </tr>
+            <tr>
+              <td>Public Transparency Report</td>
+              <td class="cell-yes">✓</td>
+              <td class="cell-yes">✓</td>
+              <td class="cell-yes">✓</td>
+              <td class="cell-part">Partial</td>
+            </tr>
+            <tr>
+              <td>Attention Visualization Tools</td>
+              <td class="cell-part">Partial</td>
+              <td class="cell-yes">✓</td>
+              <td class="cell-part">Partial</td>
+              <td class="cell-yes">✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FURTHER READING ── -->
+  <section class="section section-reading" aria-labelledby="reading-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">07 — Further Reading</span>
+        <h2 class="section-title" id="reading-heading">Go Deeper</h2>
+        <p class="section-desc">Curated papers, books, tools, and policy documents to explore every topic in this artifact further.</p>
+      </div>
+
+      <div class="reading-grid">
+
+        <div class="reading-group">
+          <div class="reading-group-title">Overviews &amp; Introductions</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://christophm.github.io/interpretable-ml-book/" target="_blank" rel="noopener">Interpretable Machine Learning (Christoph Molnar)</a>
+              <span class="reading-desc">The definitive free online book on XAI. Covers SHAP, LIME, partial dependence plots, and more with clear examples. Essential first read — no advanced math required for the early chapters.</span>
+            </li>
+            <li>
+              <a href="https://storage.googleapis.com/gweb-research2023-media/pubtools/5190.pdf" target="_blank" rel="noopener">Explainable AI: A Review of Concepts and Methods (Google)</a>
+              <span class="reading-desc">Google's foundational whitepaper surveying the XAI landscape across explanation types, model families, and evaluation criteria. Useful for understanding the taxonomy used by industry practitioners.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/1602.04938" target="_blank" rel="noopener">"Why Should I Trust You?" — LIME Paper (Ribeiro et al., 2016)</a>
+              <span class="reading-desc">The original paper introducing LIME. Section 3 explains the core algorithm clearly. Widely cited as one of the founding papers of modern model-agnostic XAI.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Methods &amp; Techniques</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://arxiv.org/abs/1705.07874" target="_blank" rel="noopener">A Unified Approach to Interpreting Model Predictions — SHAP (Lundberg &amp; Lee, 2017)</a>
+              <span class="reading-desc">The paper that introduced SHAP values. The authors show SHAP unifies six prior explanation methods under a single framework rooted in Shapley values from cooperative game theory.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener">Constitutional AI: Harmlessness from AI Feedback (Anthropic, 2022)</a>
+              <span class="reading-desc">Anthropic's paper introducing Constitutional AI — the technique used to train Claude. Explains how explicit principles enable auditable, self-critiquing model behavior without relying entirely on human raters.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener">Chain-of-Thought Prompting Elicits Reasoning in LLMs (Wei et al., 2022)</a>
+              <span class="reading-desc">The Google Brain paper that demonstrated chain-of-thought prompting. Shows that asking LLMs to reason step-by-step dramatically improves accuracy on complex tasks — and makes reasoning externally inspectable.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Tools &amp; Frameworks</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://shap.readthedocs.io/en/latest/" target="_blank" rel="noopener">SHAP Documentation (shap.readthedocs.io)</a>
+              <span class="reading-desc">Official docs and tutorials for the SHAP Python library. Includes worked examples for tree models, deep learning, and NLP. The "Getting Started" notebook is a practical hands-on introduction.</span>
+            </li>
+            <li>
+              <a href="https://aix360.res.ibm.com/" target="_blank" rel="noopener">IBM AI Explainability 360 (AIX360)</a>
+              <span class="reading-desc">IBM's open-source toolkit covering eight XAI methods with a unified API. Includes a "guidance system" that recommends which explanation method to use given your model type, data, and stakeholder needs.</span>
+            </li>
+            <li>
+              <a href="https://pair-code.github.io/what-if-tool/" target="_blank" rel="noopener">Google What-If Tool</a>
+              <span class="reading-desc">A visual, no-code tool from Google PAIR for exploring model behavior across different inputs, datapoints, and counterfactuals. Works with TensorFlow and scikit-learn models directly in a browser interface.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Policy &amp; Regulation</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener">EU AI Act — Official Text (EUR-Lex)</a>
+              <span class="reading-desc">The full text of the European Union's AI Act, effective 2024. Article 13 (Transparency) and Article 14 (Human Oversight) are directly relevant to XAI requirements for high-risk AI systems.</span>
+            </li>
+            <li>
+              <a href="https://www.nist.gov/artificial-intelligence/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI Risk Management Framework</a>
+              <span class="reading-desc">The US National Institute of Standards and Technology's voluntary framework for managing AI risks — including explainability and transparency. Widely adopted by US federal agencies and enterprises.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/1811.10154" target="_blank" rel="noopener">Stop Explaining Black Box ML Models — Rudin (2019)</a>
+              <span class="reading-desc">Cynthia Rudin's influential paper arguing that for high-stakes decisions, we should build inherently interpretable models rather than retrofitting explanations onto black boxes. A counterpoint worth reading alongside mainstream XAI literature.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 06: EXPLANATORY DOCUMENT ── -->
+  <section class="section" aria-labelledby="explainer-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">08 — Reflection</span>
+        <h2 class="section-title" id="explainer-heading">Reflection</h2>
+      </div>
+
+      <div class="explainer-card">
+        <p>Generative AI models — particularly large language models like GPT-4, Claude, Gemini, and LLaMA — are powerful yet fundamentally opaque. Their decision-making is distributed across billions of parameters through non-linear interactions that resist straightforward interpretation. This artifact maps the three core challenges standing between AI systems and genuine transparency: the <strong>black box opacity</strong> of distributed model internals, the <strong>post-hoc explanation gap</strong> where after-the-fact rationales may not reflect true reasoning, and <strong>data quality and bias</strong> embedded in training sets. Understanding these challenges is the first step toward holding AI systems accountable.</p>
+        <p>Validation metrics — <strong>faithfulness, human-groundedness, robustness, and completeness</strong> — give us concrete ways to evaluate whether an explanation is trustworthy, not just plausible. The five solution techniques shown here represent the industry's active response: attention visualization and probing classifiers expose model internals; SHAP and LIME quantify feature contributions; chain-of-thought prompting makes reasoning externally auditable; and Anthropic's Constitutional AI embeds explicit, public principles directly into training. The <strong>teal color identity</strong> was chosen to evoke clinical clarity and diagnostic precision — qualities that should define how we approach AI accountability. The model comparison table grounds the concepts in the real landscape of tools available today.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="artifact-footer">
+    <div class="container">
+      <span class="mono footer-copy">Artifact 4 &mdash; Atharva Deshpande &middot; 2026</span>
+      <a href="../../index.html#artifacts" class="footer-back">&#8592; Back to Portfolio</a>
+    </div>
+  </footer>
+
+  <script>
+    const REVEAL_SELECTOR = '.xai-def-card, .xai-why-card, .concept-card, .challenge-card, .metric-card, .technique-card, .reading-group, .explainer-card';
+
+    // Scroll-triggered reveal for all animated elements
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll(REVEAL_SELECTOR).forEach(el => revealObs.observe(el));
+
+    // Immediately reveal any elements already in the viewport on page load
+    document.querySelectorAll(REVEAL_SELECTOR).forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
+        el.classList.add('visible');
+      }
+    });
+
+    // Table row reveal — each cell individually for a left-to-right sweep effect
+    const tableObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const cells = e.target.querySelectorAll('td');
+          cells.forEach((cell, i) => {
+            setTimeout(() => cell.classList.add('visible'), i * 60);
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.compare-table tbody tr').forEach(row => tableObs.observe(row));
+  </script>
+
+</body>
+</html>
