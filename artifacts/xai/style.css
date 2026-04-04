@@ -463,6 +463,147 @@ a:hover { text-decoration: underline; }
 }
 .footer-back:hover { color: var(--text); text-decoration: none; }
 
+/* ── Key Terms ── */
+.concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+@media (max-width: 720px) {
+  .concepts-grid { grid-template-columns: 1fr; }
+}
+.concept-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 22px;
+  opacity: 0; transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease, background .2s;
+}
+.concept-card.visible { opacity: 1; transform: translateY(0); }
+.concept-card:nth-child(2) { transition-delay: .05s; }
+.concept-card:nth-child(3) { transition-delay: .1s; }
+.concept-card:nth-child(4) { transition-delay: .15s; }
+.concept-card:nth-child(5) { transition-delay: .2s; }
+.concept-card:nth-child(6) { transition-delay: .25s; }
+.concept-card:nth-child(7) { transition-delay: .3s; }
+.concept-card:nth-child(8) { transition-delay: .35s; }
+.concept-card:hover { background: var(--bg-card2); }
+.concept-card[data-cat="core"]       { border-left: 3px solid var(--teal); }
+.concept-card[data-cat="model"]      { border-left: 3px solid var(--violet); }
+.concept-card[data-cat="challenge"]  { border-left: 3px solid var(--red); }
+.concept-card[data-cat="method"]     { border-left: 3px solid var(--amber); }
+.concept-card[data-cat="regulation"] { border-left: 3px solid var(--muted); }
+.concept-tag {
+  font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 6px;
+}
+.concept-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  margin-bottom: 6px;
+}
+.concept-short {
+  font-family: 'DM Mono', monospace;
+  font-size: .78rem; color: var(--teal);
+  margin-bottom: 12px; line-height: 1.5;
+}
+.concept-body {
+  font-size: .875rem; color: var(--muted);
+  line-height: 1.75;
+}
+.concept-body em {
+  color: var(--text); font-style: normal; font-weight: 500;
+}
+
+/* Abbreviations strip */
+.abbr-section {
+  margin-top: 52px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+}
+.abbr-heading {
+  font-size: .8rem; color: var(--muted);
+  margin-bottom: 18px; letter-spacing: .05em;
+}
+.abbr-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px 16px;
+}
+@media (max-width: 768px) {
+  .abbr-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.abbr-item {
+  display: flex; align-items: baseline; gap: 10px;
+  background: rgba(26,53,48,.5);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 12px;
+  transition: background .2s;
+}
+.abbr-item:hover { background: var(--bg-card2); }
+.abbr-term {
+  font-family: 'DM Mono', monospace;
+  font-size: .8rem; font-weight: 500;
+  color: var(--teal);
+  white-space: nowrap; flex-shrink: 0;
+  min-width: 44px;
+}
+.abbr-full {
+  font-size: .8rem; color: var(--muted);
+  line-height: 1.4;
+}
+
+/* ── Further Reading ── */
+.section-reading {
+  background: rgba(10,26,24,.7);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.reading-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 48px;
+}
+@media (max-width: 768px) {
+  .reading-grid { grid-template-columns: 1fr; }
+}
+.reading-group {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.reading-group.visible { opacity: 1; transform: translateY(0); }
+.reading-group:nth-child(2) { transition-delay: .08s; }
+.reading-group:nth-child(3) { transition-delay: .16s; }
+.reading-group:nth-child(4) { transition-delay: .24s; }
+.reading-group-title {
+  font-family: 'Syne', sans-serif;
+  font-size: .88rem; font-weight: 700;
+  color: var(--teal); margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: .01em;
+}
+.reading-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.reading-list li { display: flex; flex-direction: column; gap: 4px; }
+.reading-list a {
+  font-size: .9rem; font-weight: 500;
+  color: var(--teal);
+  line-height: 1.45;
+  transition: color .2s;
+}
+.reading-list a:hover { color: var(--text); text-decoration: none; }
+.reading-desc {
+  display: block;
+  font-size: .83rem; color: var(--muted);
+  line-height: 1.68;
+}
+
 /* ── Mobile tweaks ── */
 @media (max-width: 640px) {
   .hero-stats { width: 100%; }

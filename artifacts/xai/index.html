@@ -84,6 +84,92 @@
     </div>
   </section>
 
+  <!-- ── KEY TERMS & CONCEPTS ── -->
+  <section class="section" aria-labelledby="concepts-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">Key Terms &amp; Concepts</span>
+        <h2 class="section-title" id="concepts-heading">Jargon Explained</h2>
+        <p class="section-desc">Eight foundational terms used throughout this artifact — from model architecture to explainability methods and regulation.</p>
+      </div>
+
+      <div class="concepts-grid">
+
+        <div class="concept-card" data-cat="core">
+          <div class="concept-tag">Core Concept</div>
+          <div class="concept-name">XAI</div>
+          <div class="concept-short">Explainable Artificial Intelligence</div>
+          <p class="concept-body">The field of methods and processes that make AI decisions understandable to humans. XAI sits at the intersection of machine learning, human-computer interaction, and ethics — seeking to bridge the gap between model capability and human trust.</p>
+        </div>
+
+        <div class="concept-card" data-cat="model">
+          <div class="concept-tag">Model Type</div>
+          <div class="concept-name">LLM</div>
+          <div class="concept-short">Large Language Model</div>
+          <p class="concept-body">A neural network with billions of parameters trained on vast text corpora to predict and generate human language. Models like <em>GPT-4</em>, <em>Claude</em>, <em>Gemini</em>, and <em>LLaMA</em> are LLMs. Their scale is both their strength and the root of explainability challenges.</p>
+        </div>
+
+        <div class="concept-card" data-cat="challenge">
+          <div class="concept-tag">Challenge</div>
+          <div class="concept-name">Black Box</div>
+          <div class="concept-short">Opaque decision system</div>
+          <p class="concept-body">A model or system where the internal logic is not visible, interpretable, or traceable. Deep neural networks are black boxes by nature — inputs and outputs are observable but the billions of intermediate calculations remain opaque even to their creators.</p>
+        </div>
+
+        <div class="concept-card" data-cat="method">
+          <div class="concept-tag">Method</div>
+          <div class="concept-name">Post-hoc</div>
+          <div class="concept-short">After-the-fact explanation</div>
+          <p class="concept-body">An explanation generated <em>after</em> a model has produced its output, rather than as part of the decision process itself. Most XAI techniques are post-hoc. The core concern: do they faithfully reflect what the model computed, or just produce a plausible-sounding rationale?</p>
+        </div>
+
+        <div class="concept-card" data-cat="method">
+          <div class="concept-tag">Technique</div>
+          <div class="concept-name">SHAP</div>
+          <div class="concept-short">SHapley Additive exPlanations</div>
+          <p class="concept-body">A method rooted in cooperative game theory that assigns each input feature a contribution score for a specific prediction. SHAP values are <em>additive</em> (they sum to the model output) and <em>consistent</em> — more important features always receive higher scores. Widely used in tabular ML and increasingly in NLP.</p>
+        </div>
+
+        <div class="concept-card" data-cat="method">
+          <div class="concept-tag">Technique</div>
+          <div class="concept-name">LIME</div>
+          <div class="concept-short">Local Interpretable Model-agnostic Explanations</div>
+          <p class="concept-body">Explains a single prediction by fitting a simple, interpretable model (e.g. linear regression) to the complex model's behavior in the neighborhood of that input. <em>Local</em> means it only explains one prediction at a time. <em>Model-agnostic</em> means it works with any black-box model.</p>
+        </div>
+
+        <div class="concept-card" data-cat="method">
+          <div class="concept-tag">Technique</div>
+          <div class="concept-name">CoT</div>
+          <div class="concept-short">Chain-of-Thought Prompting</div>
+          <p class="concept-body">A prompting strategy that instructs an LLM to reason step-by-step before producing a final answer. The intermediate reasoning steps are externally visible, making the model's logic auditable without accessing model internals. Introduced by Wei et al. (2022) at Google Brain.</p>
+        </div>
+
+        <div class="concept-card" data-cat="regulation">
+          <div class="concept-tag">Regulation</div>
+          <div class="concept-name">EU AI Act</div>
+          <div class="concept-short">European AI Regulation (2024)</div>
+          <p class="concept-body">The world's first comprehensive AI law, passed by the European Union in 2024. It categorizes AI systems by risk and mandates <em>transparency and explainability</em> for high-risk applications (medical diagnosis, credit scoring, recruitment, law enforcement). Non-compliance carries fines up to €35M or 7% of global revenue.</p>
+        </div>
+
+      </div>
+
+      <!-- Abbreviations quick-reference -->
+      <div class="abbr-section">
+        <div class="abbr-heading mono">ABBREVIATIONS USED IN THIS ARTIFACT</div>
+        <div class="abbr-grid">
+          <div class="abbr-item"><span class="abbr-term">XAI</span><span class="abbr-full">Explainable AI</span></div>
+          <div class="abbr-item"><span class="abbr-term">LLM</span><span class="abbr-full">Large Language Model</span></div>
+          <div class="abbr-item"><span class="abbr-term">SHAP</span><span class="abbr-full">SHapley Additive exPlanations</span></div>
+          <div class="abbr-item"><span class="abbr-term">LIME</span><span class="abbr-full">Local Interpretable Model-agnostic Explanations</span></div>
+          <div class="abbr-item"><span class="abbr-term">CoT</span><span class="abbr-full">Chain-of-Thought</span></div>
+          <div class="abbr-item"><span class="abbr-term">RLHF</span><span class="abbr-full">Reinforcement Learning from Human Feedback</span></div>
+          <div class="abbr-item"><span class="abbr-term">CAI</span><span class="abbr-full">Constitutional AI (Anthropic)</span></div>
+          <div class="abbr-item"><span class="abbr-term">EU AI Act</span><span class="abbr-full">European Union Artificial Intelligence Act</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── SECTION 02: CHALLENGES ── -->
   <section class="section" aria-labelledby="challenges-heading">
     <div class="container">
@@ -295,6 +381,93 @@
     </div>
   </section>
 
+  <!-- ── FURTHER READING ── -->
+  <section class="section section-reading" aria-labelledby="reading-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag mono">Further Reading</span>
+        <h2 class="section-title" id="reading-heading">Go Deeper</h2>
+        <p class="section-desc">Curated papers, books, tools, and policy documents to explore every topic in this artifact further.</p>
+      </div>
+
+      <div class="reading-grid">
+
+        <div class="reading-group">
+          <div class="reading-group-title">Overviews &amp; Introductions</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://christophm.github.io/interpretable-ml-book/" target="_blank" rel="noopener">Interpretable Machine Learning (Christoph Molnar)</a>
+              <span class="reading-desc">The definitive free online book on XAI. Covers SHAP, LIME, partial dependence plots, and more with clear examples. Essential first read — no advanced math required for the early chapters.</span>
+            </li>
+            <li>
+              <a href="https://storage.googleapis.com/gweb-research2023-media/pubtools/5190.pdf" target="_blank" rel="noopener">Explainable AI: A Review of Concepts and Methods (Google)</a>
+              <span class="reading-desc">Google's foundational whitepaper surveying the XAI landscape across explanation types, model families, and evaluation criteria. Useful for understanding the taxonomy used by industry practitioners.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/1602.04938" target="_blank" rel="noopener">"Why Should I Trust You?" — LIME Paper (Ribeiro et al., 2016)</a>
+              <span class="reading-desc">The original paper introducing LIME. Section 3 explains the core algorithm clearly. Widely cited as one of the founding papers of modern model-agnostic XAI.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Methods &amp; Techniques</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://arxiv.org/abs/1705.07874" target="_blank" rel="noopener">A Unified Approach to Interpreting Model Predictions — SHAP (Lundberg &amp; Lee, 2017)</a>
+              <span class="reading-desc">The paper that introduced SHAP values. The authors show SHAP unifies six prior explanation methods under a single framework rooted in Shapley values from cooperative game theory.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener">Constitutional AI: Harmlessness from AI Feedback (Anthropic, 2022)</a>
+              <span class="reading-desc">Anthropic's paper introducing Constitutional AI — the technique used to train Claude. Explains how explicit principles enable auditable, self-critiquing model behavior without relying entirely on human raters.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener">Chain-of-Thought Prompting Elicits Reasoning in LLMs (Wei et al., 2022)</a>
+              <span class="reading-desc">The Google Brain paper that demonstrated chain-of-thought prompting. Shows that asking LLMs to reason step-by-step dramatically improves accuracy on complex tasks — and makes reasoning externally inspectable.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Tools &amp; Frameworks</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://shap.readthedocs.io/en/latest/" target="_blank" rel="noopener">SHAP Documentation (shap.readthedocs.io)</a>
+              <span class="reading-desc">Official docs and tutorials for the SHAP Python library. Includes worked examples for tree models, deep learning, and NLP. The "Getting Started" notebook is a practical hands-on introduction.</span>
+            </li>
+            <li>
+              <a href="https://aix360.res.ibm.com/" target="_blank" rel="noopener">IBM AI Explainability 360 (AIX360)</a>
+              <span class="reading-desc">IBM's open-source toolkit covering eight XAI methods with a unified API. Includes a "guidance system" that recommends which explanation method to use given your model type, data, and stakeholder needs.</span>
+            </li>
+            <li>
+              <a href="https://pair-code.github.io/what-if-tool/" target="_blank" rel="noopener">Google What-If Tool</a>
+              <span class="reading-desc">A visual, no-code tool from Google PAIR for exploring model behavior across different inputs, datapoints, and counterfactuals. Works with TensorFlow and scikit-learn models directly in a browser interface.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="reading-group">
+          <div class="reading-group-title">Policy &amp; Regulation</div>
+          <ul class="reading-list">
+            <li>
+              <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener">EU AI Act — Official Text (EUR-Lex)</a>
+              <span class="reading-desc">The full text of the European Union's AI Act, effective 2024. Article 13 (Transparency) and Article 14 (Human Oversight) are directly relevant to XAI requirements for high-risk AI systems.</span>
+            </li>
+            <li>
+              <a href="https://www.nist.gov/artificial-intelligence/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI Risk Management Framework</a>
+              <span class="reading-desc">The US National Institute of Standards and Technology's voluntary framework for managing AI risks — including explainability and transparency. Widely adopted by US federal agencies and enterprises.</span>
+            </li>
+            <li>
+              <a href="https://arxiv.org/abs/1811.10154" target="_blank" rel="noopener">Stop Explaining Black Box ML Models — Rudin (2019)</a>
+              <span class="reading-desc">Cynthia Rudin's influential paper arguing that for high-stakes decisions, we should build inherently interpretable models rather than retrofitting explanations onto black boxes. A counterpoint worth reading alongside mainstream XAI literature.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ── SECTION 06: EXPLANATORY DOCUMENT ── -->
   <section class="section" aria-labelledby="explainer-heading">
     <div class="container">
@@ -326,7 +499,7 @@
     }, { threshold: 0.08 });
 
     document.querySelectorAll(
-      '.xai-def-card, .xai-why-card, .challenge-card, .metric-card, .technique-card, .explainer-card'
+      '.xai-def-card, .xai-why-card, .concept-card, .challenge-card, .metric-card, .technique-card, .reading-group, .explainer-card'
     ).forEach(el => revealObs.observe(el));
 
     // Table row reveal — each cell individually for a left-to-right sweep effect
